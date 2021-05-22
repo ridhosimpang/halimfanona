@@ -3,43 +3,42 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    <div class="row">
-    <div class="col-10">
-        <center><h1>DATA PENGAJUAN BERKAS</h1></center>
+<div class="section-header">
+        <h1>Data Pengajuan Berkas</h1>
+</div>
         
 @if (session('status'))
 <div class="alert alert-success">
     {{ session('status')}}
 </div>
 @endif
-<center>
-<table class="table table-bordered">
-    <thead class="thead-dark">
-        <center>
-            <table border="1" width="1100px" align="center">
-                    <tr style="background-color: yellow;">
-                {{-- <center> --}}
-                <th width="40px" scope="col" style="text-align: center">No</th>
-                <th width="200px" scope="col" style="text-align: center">Nama Perumahan</th>
-                <th width="50px "scope="col" style="text-align: center">Blok</th>
-                <th width="50px" scope="col" style="text-align: center">No</th>
-                <th width="200px" scope="col" style="text-align: center">Nama Pembeli</th>
-                <th width="120px" scope="col" style="text-align: center">Status Berkas</th>
-                <th width="150px" scope="col" style="text-align: center">Aksi</th>
-                {{-- </center> --}}
-            </thead>
-        </tr>
+<div class="card">
+    <div class="card-header">
+        <h4> Data Pengajuan </h4>
+</div>
+<div class="card-body">
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No </th>
+        <th scope="col">Nama Perumahan</th>
+        <th scope="col">Blok</th>
+        <th scope="col">Nomor</th>
+        <th scope="col">Nama Konsumen</th>
+        <th scope="col">Status Berkas</th>
+        <th scope="col">Aksi</th>
+      </tr>
+    </thead>
             <tbody>
                 @foreach ($pengajuan as $pengajuan)
                 <tr>
-                    <th scope="row" style="text-align: center">{{ $loop->iteration}}</th>
-                    <td align="center">{{ $pengajuan->nama_perumahan}}</td>
-                    <td align="center">{{ $pengajuan->blok}}</td>
-                    <td align="center">{{ $pengajuan->no}}</td>
-                    <td align="center">{{ $pengajuan->nama}}</td>
-                    <td align="center">{{ $pengajuan->statusBerkas}}</td>
-                    <td align="center">
+                    <th scope="row">{{ $loop->iteration}}</th>
+                    <td>{{ $pengajuan->nama_perumahan}}</td>
+                    <td>{{ $pengajuan->blok}}</td>
+                    <td>{{ $pengajuan->no}}</td>
+                    <td>{{ $pengajuan->nama}}</td>
+                    <td>{{ $pengajuan->statusBerkas}}</td>
+                    <td>
                         
                         <form action="datapengajuan/{{$pengajuan->id }}" method="post" class="">
                             @method('patch')
@@ -64,7 +63,6 @@
                 </tbody>
 </table>
 </table>
-</center>
     </div>
     </div>
 </div>

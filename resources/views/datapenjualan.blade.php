@@ -3,50 +3,47 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    <div class="row">
-    <div class="col-10">
-        <center><h1>DATA PENJUALAN</h1></center>
+<div class="section-header">
+        <h1>DATA PENJUALAN</h1>
         @if(auth()->user()->role=='admin')
-               <center> <a href="datapenjualan/tambahpenjualan" class=" btn btn-info mb-2 ">TAMBAH DATA PENJUALAN</a> </center>
+               <a href="datapenjualan/tambahpenjualan" class=" btn btn-info mb-2 " style="display: flex; margin-left:auto;">TAMBAH DATA PENJUALAN</a>
 @endif
+</div>
 @if (session('status'))
 <div class="alert alert-success">
     {{ session('status')}}
 </div>
 @endif
-<center>
-<table class="table table-bordered">
-    <thead class="thead-dark">
-        <center>
-            <table border="1" width="1100px">
-                    <tr style="background-color: yellow;">
-
-                <th width="40px" scope="col" style="text-align: center">No</th>
-                <th width="200px" scope="col" style="text-align: center">Nama Perumahan</th>
-                <th width="50px "scope="col" style="text-align: center">Blok</th>
-                <th width="50px" scope="col" style="text-align: center">No</th>
-                <th width="200px" scope="col" style="text-align: center">Nama Pembeli</th>
-                <th width="120px" scope="col" style="text-align: center">Tanggal Terjual</th>
-                <th width="120px" scope="col" style="text-align: center">Status Kavling</th>
-                @if(auth()->user()->role=='admin')
-                <th width="150px" scope="col" style="text-align: center">Aksi</th>
-                @endif
-    
-            </thead>
-        </tr>
+<div class="card">
+    <div class="card-header">
+        <h4> Data Penjualan </h4>
+</div>
+<div class="card-body">
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">No </th>
+        <th scope="col">Nama Perumahan</th>
+        <th scope="col">Blok</th>
+        <th scope="col">No</th>
+        <th scope="col">Nama Konsumen</th>
+        <th scope="col">Tanggal Akad</th>
+        <th scope="col">Status Kavling</th>
+        <th scope="col">Aksi</th>
+      </tr>
+    </thead>
             <tbody>
                 @foreach ($penjualan as $penjualan)
                 <tr>
-                    <th scope="row" style="text-align: center">{{ $loop->iteration}}</th>
-                    <td align="center">{{ $penjualan->nama_perumahan}}</td>
-                    <td align="center">{{ $penjualan->blok}}</td>
-                    <td align="center">{{ $penjualan->no}}</td>
-                    <td align="center">{{ $penjualan->nama}}</td>
-                    <td align="center">{{ $penjualan->tglakad}}</td>
-                    <td align="center">{{ $penjualan->status}}</td>
+                    <th scope="row">{{ $loop->iteration}}</th>
+                    <td>{{ $penjualan->nama_perumahan}}</td>
+                    <td>{{ $penjualan->blok}}</td>
+                    <td>{{ $penjualan->no}}</td>
+                    <td>{{ $penjualan->nama}}</td>
+                    <td>{{ $penjualan->tglakad}}</td>
+                    <td>{{ $penjualan->status}}</td>
                     @if(auth()->user()->role=='admin')
-                    <td align="center">
+                    <td>
                         
                         {{-- <form action="datapenjualan/{{$penjualan->id }}" method="post" class="d-inline">
                             @method('delete')
@@ -87,7 +84,6 @@
                 </tbody>
 </table>
 </table>
-</center>
     </div>
     </div>
 </div>

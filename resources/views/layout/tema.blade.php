@@ -254,9 +254,9 @@
               <li><a class="nav-link" href="/admin"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
               <li class="menu-header">Menu Pelanggan</li>
               <li><a class="nav-link mb-3" href="/dataperumahan"><i class="fas fa-home" style="font-size: 20px"></i> <span>Data Perumahan</span></a></li>
+              <li><a class="nav-link mb-3" href="/datapengajuan"><i class="fas fa-clipboard-check" style="font-size: 20px"></i> <span>Data Pengajuan</span></a></li>
               <li><a class="nav-link mb-3" href="/datakonsumen"><i class="fas fa-user-friends" style="font-size: 20px"></i> <span>Data Konsumen</span></a></li>
-              <li><a class="nav-link mb-3" href="/datapenjualan"><i class="fas fa-clipboard-check" style="font-size: 20px"></i> <span>Data Pengajuan</span></a></li>
-              <li><a class="nav-link mb-3" href="/datapengajuan"><i class="fas fa-money-bill-wave" style="font-size: 20px"></i> <span>Data Penjualan</span></a></li>
+              <li><a class="nav-link mb-3" href="/datapenjualan"><i class="fas fa-money-bill-wave" style="font-size: 20px"></i> <span>Data Penjualan</span></a></li>
               {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Components</span></a>
                 <ul class="dropdown-menu">
