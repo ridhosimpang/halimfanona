@@ -1,4 +1,4 @@
-@extends('layout.menuadmin')
+@extends('layout.tema')
    
 @section('container')
 

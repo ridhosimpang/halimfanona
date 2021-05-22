@@ -1,13 +1,13 @@
 <!-- /navbar -->
-@extends('layout.menuadmin')
+@extends('layout.tema')
 @section('title', 'PT. Halim Fanona')
    
 @section('container')
 <!-- /subnavbar -->
+<div class="section-header sticky-top">
+  <div class="container">
+    <h1>Selamat Datang {{auth()->user()->name}}</h1>
+  </div>
+</div>
 
-<section id="hero" class="d-flex align-items-center">
-    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-      <h1>Selamat Datang {{auth()->user()->name}}</h1>
-    </div>
-  </section>
 @endsection
