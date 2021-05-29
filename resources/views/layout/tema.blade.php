@@ -356,9 +356,14 @@
             </ul>
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
+              <a href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Log Out
               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
             </div>
         </aside>
       </div>
