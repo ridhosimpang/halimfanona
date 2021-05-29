@@ -4,8 +4,7 @@
 
 
 <div class="section-header">
-    <h1>Data Perumahan</h1>
-    <a href="dataperumahan/tambahperumahan" class=" btn btn-info mb-2 " style="display: flex; margin-left:auto;">Tambah Perumahan</a>
+    <a href="dataperumahan/tambahperumahan"class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Tambah Data Perumahan</a>
 </div>
         
         @if (session('status'))

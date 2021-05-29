@@ -3,16 +3,15 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="col-sm-8 col-sm-offset-3 col-lg-100 col-lg-offset-3 main">
-    <div class="row">
-    <div class="col-10">
-        <center> <h1>FORM TAMBAH DATA KONSUMEN</h1> </center>
+<div class="section-header">
+    <h1>Form Tambah Konsumen</h1>
     
-        <div class="card-body">
-                    
-            <form method="POST" action="/datakonsumen">
-                @csrf
-                  <div class="form-group row">
+</div>
+<div class="card">
+<form method="POST" action="/datakonsumen">
+@csrf
+                <div class="card-body">
+                      <div class="form-group row">
                     <label for="nama" class="col-sm-3 col-form-label">Nama Konsumen</label>
                     <div class="col-sm-9 ">
                       <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukan Nama Konsumen" name="nama">
@@ -231,13 +230,13 @@
                                 <div class="invalid-feedback">{{$message}}</div>
                                 @enderror
                               </div>  
+                              </div>
                           
-                            <button type="submit" class="btn btn-primary btn-block py-2">Tambah Data</button>
-                    <a href="/datakonsumen" class="btn btn-secondary btn-block py-2">Kembali</a>
-                         
+                    <div class="card-footer text-right">
+                    <a href="/datakonsumen" class="btn btn-light">Kembali</a>      
+                            <button type="submit" class="btn btn-primary">Tambah Data</button>
+                    </div>                 
             </form>
-        </div>
-    </div>
-          
-    </div>
+            </div>
     @endsection
+    

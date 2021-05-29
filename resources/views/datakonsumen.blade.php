@@ -4,18 +4,18 @@
 
 <!-- /subnavbar -->
 <div class="section-header">
-        <h1>DATA KONSUMEN</h1>
-<a href="datakonsumen/tambahkonsumen" class=" btn btn-info mb-2 " style="display: flex; margin-left:auto;">Tambah Data Konsumen</a>
+        
+        <a href="datakonsumen/tambahkonsumen" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Tambah Data Konsumen</a>
 </div>
 
 @if (session('status'))
-<div class="alert alert-info">
+<div class="alert alert-success">
     {{ session('status')}}
 </div>
 @endif
 <div class="card">
     <div class="card-header">
-        <h4> Data Perumahan </h4>
+        <h4> Data Konsumen </h4>
 </div>
 <div class="card-body">
 <table class="table table-hover">
