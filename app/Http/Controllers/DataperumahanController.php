@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\perumahan;
+use App\unit;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -82,7 +83,12 @@ class DataperumahanController extends Controller
     {
         return view('ubahperumahan', compact('perum'));
     }
-
+    
+    public function lihat(perumahan $perum)
+    {
+        $unit=unit::where('perumahan_id', $perum->id)->get();
+        return view('lihatperumahan', compact('perum','unit'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -113,6 +119,27 @@ class DataperumahanController extends Controller
                 'foto' => $request->foto
             ]);
             return redirect('/dataperumahan')->with('status', 'Data Perumahan Berhasil Diubah');
+
+        
+    } 
+    public function tambah(Request $request, perumahan $id)
+    {
+        // dd($id);
+        $perum=$id->id;
+        $rules=[
+            'blok' => 'required',
+            'luastanah' => 'required'
+            ];
+        $costumMessages = [
+            'required' =>':attribute tidak boleh kosong'
+        ];
+        $this->validate($request,$rules,$costumMessages);
+        $requestData = $request->all();
+        $requestData['perumahan_id']=$id->id;
+// dd($requestData);
+        unit::create($requestData);
+
+            return redirect()->route('lihatPerumahan',compact('perum'))->with('status', 'Unit Berhasil Ditambahkan');
 
         
     } 

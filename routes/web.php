@@ -43,6 +43,7 @@ Route::get('/dataperumahan/{perum}', 'DataperumahanController@show');
 Route::post('/dataperumahan', 'DataperumahanController@store');
 Route::delete('/dataperumahan/{perum}', 'DataperumahanController@destroy');
 Route::get('/dataperumahan/{perum}/edit', 'DataperumahanController@edit');
+Route::get('/dataperumahan/{perum}/lihat', 'DataperumahanController@lihat')->name('lihatPerumahan');
 Route::patch('/dataperumahan/{perum}', 'DataperumahanController@update');
 
 Route::get('/datakonsumen', 'DatakonsumenController@index');
@@ -61,8 +62,12 @@ Route::get('/ubahpenjualan/{penjualan}/edit', 'DatapenjualanController@edit');
 Route::patch('/datapenjualan/{penjualan}', 'DatapenjualanController@update');
 
 Route::get('/datapengajuan', 'DatapengajuanController@index');
-Route::get('/datapengajuan/tambahpengajuan', 'DatapengajuanController@create');
-Route::post('/datapengajuan', 'DatapengajuanController@store');
+Route::get('/datapengajuan/tambahpengajuan', 'DatapengajuanController@createPengajuan')->name('tambahPengajuan');
+Route::get('/datapengajuan/{pengajuan}', 'DatapengajuanController@show');
+Route::get('/cariPerumahan', 'DatapengajuanController@cariPerumahan');
+Route::get('/cariBlok', 'DatapengajuanController@cariBlok');
+Route::post('/datapengajuan', 'DatapengajuanController@store')->name('pengajuanSimpan');
+// Route::post('/datapengajuan', 'DatapengajuanController@store');
 Route::delete('/datapengajuan/{pengajuan}', 'DatapengajuanController@destroy');
 Route::patch('/datapengajuan/{pengajuan}', 'DatapengajuanController@update');
 
@@ -70,6 +75,8 @@ Route::get('/editadmin','DatadirekturController@kelolaadmin');
 Route::get('/tambahadmin','DatadirekturController@tambahadmin');
 Route::post('/simpanadmin','DatadirekturController@simpanadmin');
 Route::delete('/hapusadmin/{admin}','DatadirekturController@hapusadmin');
+
+Route::post('/lihatperumahan/{id}','DataperumahanController@tambah');
 
 Auth::routes();
 

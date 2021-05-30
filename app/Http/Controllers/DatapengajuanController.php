@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\pengajuan;
-use App\penjualan;
+use App\perumahan;
+use App\unit;
+// use App\penjualan;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +20,8 @@ class DatapengajuanController extends Controller
      */
     public function index()
     {
-        $pengajuan = penjualan::all();
+        $pengajuan = pengajuan::all();
+        // dd($pengajuan);
         return view('datapengajuan', ['pengajuan' => $pengajuan]);
     }
 
@@ -27,10 +30,11 @@ class DatapengajuanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createPengajuan()
     {
-        // $pengajuan = new pengajuan;
-        // return view('/tambahpengajuan',compact('pengajuan'));
+        // return "Pengajuan";
+        $pengajuan = new pengajuan;
+        return view('/tambahpengajuan',compact('pengajuan'));
     }
 
     /**
@@ -41,25 +45,30 @@ class DatapengajuanController extends Controller
      */
     public function store(Request $request)
     {
-        // $rules =[ 
-        //     'nama_perumahan' => 'required', 
-        //     'blok' => 'required',
-        //     'no' => 'required|numeric',
-        //     'nama' => 'required',
-        //     'statusBerkas' => 'required'
+        // dd($request);
+        $rules =[ 
+            'nama_konsumen' => 'required', 
+            'nik' => 'required|size:16', 
+            'tempat_lahir' => 'required',
+            'alamat' => 'required',
+            'jk' => 'required',
+            'no_hp' => 'required|numeric'
             
-        // ];
-        // $costumMessages = [
-        //     'required' =>':attribute tidak boleh kosong',
-        //     'numeric' =>'Data yang dimasukan harus angka'
-        // ];
+        ];
+        $costumMessages = [
+            'required' =>':attribute tidak boleh kosong',
+            'numeric' =>'Data yang dimasukan harus angka',
+            'size' => 'Jumlah NIK Harus 16 Angka'
+        ]; 
+        // $requestData ['foto'] = $request->file('foto')->store('public/gambar');
 
-        // $requestData = $request->all();
-        // $this->validate($request,$rules,$costumMessages);
+        $requestData = $request->all();
+        $this->validate($request,$rules,$costumMessages);
+        pengajuan::create($requestData);
 
-        // pengajuan::create($requestData);
+        $updateUnit = unit::find($request->unit_id)->update(['pengajuan'=>$request->nama_konsumen]);
 
-        // return redirect('/datapengajuan')->with('status', 'Data Pengajuan Berhasil Ditambahkan');
+        return redirect('/datapengajuan')->with('status', 'Data konsumen berhasil ditambahkan');
     }
 
     /**
@@ -68,9 +77,9 @@ class DatapengajuanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(pengajuan $pengajuan)
     {
-        //
+        return view('datapengajuan', compact('pengajuan'));
     }
 
     /**
@@ -79,9 +88,9 @@ class DatapengajuanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(pengajuan $pengajuan)
     {
-        //
+        // return view('', compact('konsumen'));
     }
 
     /**
@@ -95,7 +104,7 @@ class DatapengajuanController extends Controller
     {
         // $penjualan = penjualan::find($request->id);
         $requestData ['statusBerkas']= $request->statusBerkas;
-        $penjualan=penjualan::find($request->id)->update($requestData);
+        $pengajuan=pengajuan::find($request->id)->update($requestData);
         return redirect('/datapengajuan')->with('status', 'Data Pengajuan Berhasil Dirubah');
     }
 
@@ -109,5 +118,24 @@ class DatapengajuanController extends Controller
     {
         pengajuan::destroy($pengajuan->id);
         return redirect('/datapengajuan')->with('status', 'Data Pengajuan Berhasil Dihapus');
+    }
+    public function cariPerumahan(Request $request){
+        if ($request->has('q')) {
+    	    $cari = $request->q;
+    		$data = perumahan::select('id', 'nama')->where('nama', 'LIKE', '%'.$cari.'%')->get();
+
+    		return response()->json($data);
+    	}
+    }
+    public function cariBlok(Request $request){
+        // dd($request);
+        if ($request->has('q')) {
+    	    $cari = $request->q;
+            $id = $request->id;
+    		$data = unit::select('id', 'blok')->where('blok', 'LIKE', '%'.$cari.'%')
+                                                    ->where('perumahan_id',$id)->get();
+
+    		return response()->json($data);
+    	}
     }
 }

@@ -8,7 +8,7 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
   <!-- CSS Libraries -->
   {{-- <link rel="stylesheet" href="../node_modules/jqvmap/dist/jqvmap.min.css">
   <link rel="stylesheet" href="../node_modules/weathericons/css/weather-icons.min.css">
@@ -250,13 +250,20 @@
             <a href="/admin">HF</a>
           </div>
           <ul class="sidebar-menu mt-5">
-              <li class="menu-header">Dashboard</li>
-              <li><a class="nav-link" href="/admin"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
+            <li class="menu-header">Dashboard</li>
+            <li><a class="nav-link" href="/admin"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
+            @if(auth()->user()->role=='admin')
               <li class="menu-header">Menu Pelanggan</li>
               <li><a class="nav-link mb-3" href="/dataperumahan"><i class="fas fa-home" style="font-size: 20px"></i> <span>Data Perumahan</span></a></li>
               <li><a class="nav-link mb-3" href="/datapengajuan"><i class="fas fa-clipboard-check" style="font-size: 20px"></i> <span>Data Pengajuan</span></a></li>
               <li><a class="nav-link mb-3" href="/datakonsumen"><i class="fas fa-user-friends" style="font-size: 20px"></i> <span>Data Konsumen</span></a></li>
               <li><a class="nav-link mb-3" href="/datapenjualan"><i class="fas fa-money-bill-wave" style="font-size: 20px"></i> <span>Data Penjualan</span></a></li>
+
+
+              @elseif(auth()->user()->role=='direktur')
+			<li><a href="/editadmin"><em class="fa fa-navicon">&nbsp;</em>Kelola Admin</a></li>
+			<li><a href="/datapenjualan"><em class="fa fa-navicon">&nbsp;</em>Laporan Penjualan</a></li>
+      @endif
               {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Components</span></a>
                 <ul class="dropdown-menu">

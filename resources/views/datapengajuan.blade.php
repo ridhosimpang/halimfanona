@@ -4,7 +4,7 @@
 
 <!-- /subnavbar -->
 <div class="section-header">
-        <h1>Data Pengajuan Berkas</h1>
+    <a href="{{route('tambahPengajuan')}}" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Tambah Data Pengajuan</a>
 </div>
         
 @if (session('status'))
@@ -14,7 +14,7 @@
 @endif
 <div class="card">
     <div class="card-header">
-        <h4> Data Pengajuan </h4>
+        <h4> Data Pengajuan Konsumen </h4>
 </div>
 <div class="card-body">
 <table class="table table-hover">
@@ -22,30 +22,29 @@
       <tr>
         <th scope="col">No </th>
         <th scope="col">Nama Perumahan</th>
-        <th scope="col">Blok</th>
-        <th scope="col">Nomor</th>
+        <th scope="col">Blok dan Nomor</th>
         <th scope="col">Nama Konsumen</th>
         <th scope="col">Status Berkas</th>
+        <th scope="col">Jadwal Wawancara</th>
+        <th scope="col">Jadwal Akad</th>
         <th scope="col">Aksi</th>
       </tr>
     </thead>
             <tbody>
-                @foreach ($pengajuan as $pengajuan)
+                @foreach ($pengajuan as $pj)
                 <tr>
                     <th scope="row">{{ $loop->iteration}}</th>
-                    <td>{{ $pengajuan->nama_perumahan}}</td>
-                    <td>{{ $pengajuan->blok}}</td>
-                    <td>{{ $pengajuan->no}}</td>
-                    <td>{{ $pengajuan->nama}}</td>
-                    <td>{{ $pengajuan->statusBerkas}}</td>
+                    <td>{{ $pj->perumahan->nama}}</td>
+                    <td>{{ $pj->unit->blok}}</td>
+                    <td>{{ $pj->nama_konsumen}}</td>
                     <td>
                         
-                        <form action="datapengajuan/{{$pengajuan->id }}" method="post" class="">
+                        <form action="datapengajuan/{{$pj->id }}" method="post" class="">
                             @method('patch')
                             @csrf
-                            <input type="hidden" name="id" value="{{$pengajuan->id}}">
+                            <input type="hidden" name="id" value="{{$pj->id}}">
                             <select class="form-select" aria-label="Default select example" name="statusBerkas">
-                                <option selected>{{$pengajuan->statusBerkas}}</option>
+                                <option selected>{{$pj->status_berkas}}</option>
                                 <option value="Melengkapi Berkas">Melengkapi Berkas</option>
                                 <option value="Berkas Dikantor">Berkas Dikantor</option>
                                 <option value="Belum Wawancara">Belum Wawancara</option>
@@ -54,10 +53,14 @@
                                 <option value="SP3K">SP3K</option> 
                                 <option value="Akad Kredit">Akad Kredit</option>
                               </select>
-                            <button type="submit" class="btn btn-info">Ganti Status</button>
-                            
-                        </form>
+                            </form>
                         </td>
+                        <td></td>
+                    <td></td>
+
+                    <td>
+                        <button type="submit" class="btn btn-info">Detail</button>
+                    </td>
                 </tr>
                 @endforeach
                 </tbody>

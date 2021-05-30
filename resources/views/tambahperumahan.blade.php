@@ -4,7 +4,7 @@
 
 <!-- /subnavbar -->
 <div class="section-header">
-    <h1>Form Tambah Konsumen</h1>
+    <h1>Form Tambah Perumahan</h1>
     
 </div>
 <div class="card">
@@ -39,15 +39,6 @@
               </div>
           {{-- </div> --}}
       </fieldset>
-                      <div class="form-group">
-                        <label for="luasrumah" class="col-sm-2 col-form-label">Luas Rumah</label>
-                        <div class="col-sm-5 ">
-                          <input type="text" class="form-control @error('luasrumah') is-invalid @enderror" id="luasrumah" placeholder="Masukan Luas Rumah" name="luasrumah">
-                      @error('luasrumah')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                        </div>
-                      </div>
                         <div class="form-group">
                           <label for="totalunit" class="col-sm-2 col-form-label">Total Unit</label>
                           <div class="col-sm-5 ">

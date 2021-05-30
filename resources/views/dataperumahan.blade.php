@@ -23,7 +23,6 @@
                 <th scope="col">No </th>
                 <th scope="col">Nama Perumahan</th>
                 <th scope="col">Tipe Rumah</th>
-                <th scope="col">Luas Rumah</th>
                 <th scope="col">Total Unit Rumah</th>
                 <th scope="col">Luas Lahan</th>
                 <th scope="col">Aksi</th>
@@ -35,13 +34,12 @@
                     <th scope="row">{{ $loop->iteration}}</th>
                     <td>{{ $perum->nama}}</td>
                     <td>{{ $perum->tiperumah}}</td>
-                    <td>{{ $perum->luasrumah}}</td>
                     <td>{{ $perum->totalunit}}</td>
                     <td>{{ $perum->luaslahan}}</td>
                     <td>
-                        <a href="dataperumahan/{{$perum->id}}/edit" class="btn btn-info">Edit</a>
-                        <button type="button" class="btn btn-danger"data-toggle="modal" data-target="#hapusdataperumahan" >Hapus</button>
-                        <div class="modal fade" id="hapusdataperumahan" tabindex="-1" role="dialog">
+                        <a href="dataperumahan/{{$perum->id}}/lihat" class="btn btn-info">Lihat</a>
+                        <button type="button" class="btn btn-danger"data-toggle="modal" data-target="#hapusdataperumahan{{$perum->id}}" >Hapus</button>
+                        <div class="modal fade" id="hapusdataperumahan{{$perum->id}}" data-backdrop="false" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
