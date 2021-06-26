@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\pengajuan;
+use App\konsumen;
 use App\perumahan;
+use App\penjualan;
 use App\unit;
 // use App\penjualan;
 
@@ -100,11 +102,17 @@ class DatapengajuanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Pengajuan $id)
     {
-        // $penjualan = penjualan::find($request->id);
-        $requestData ['statusBerkas']= $request->statusBerkas;
-        $pengajuan=pengajuan::find($request->id)->update($requestData);
+        $requestData=$request->all();
+        $requestData ['status_berkas']= $request->statusBerkas;
+        if($request->has('jadwalAkad')){
+            $requestData ['jadwalAkad']= $request->jadwalAkad;
+        }else{
+            $requestData['jadwalAkad']=null;
+        }
+        // dd($requestData);
+        $id->update($requestData);
         return redirect('/datapengajuan')->with('status', 'Data Pengajuan Berhasil Dirubah');
     }
 
@@ -137,5 +145,20 @@ class DatapengajuanController extends Controller
 
     		return response()->json($data);
     	}
+    }
+    public function transfer(Request $request, Pengajuan $id){
+        // dd($id->toArray());
+        $requestData = $id->toArray();
+        konsumen::create($requestData);
+        $cekKonsumen = konsumen::where('nik',$id->nik)->first();
+        $requestPenjualan = [];
+        $requestPenjualan['perumahan_id']=$id->perumahan_id; 
+        $requestPenjualan['unit_id']=$id->unit_id; 
+        $requestPenjualan['konsumen_id']=$cekKonsumen->id; 
+        $requestPenjualan['tglakad']=$id->jadwalAkad; 
+        $requestPenjualan['status']="Terjual";
+        penjualan::create($requestPenjualan); 
+        $id->delete();
+        return redirect()->route('pengajuan')->with('status','Data Pengajuan berhasil diterima');
     }
 }

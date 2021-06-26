@@ -1,5 +1,7 @@
 @extends('layout.tema')
-   
+@section('menuPengajuan')
+    active
+@endsection
 @section('container')
 
 <!-- /subnavbar -->
@@ -21,11 +23,11 @@
     <thead>
       <tr>
         <th scope="col">No </th>
-        <th scope="col">Nama Perumahan</th>
-        <th scope="col">Blok dan Nomor</th>
-        <th scope="col">Nama Konsumen</th>
-        <th scope="col">Status Berkas</th>
-        <th scope="col">Jadwal Wawancara</th>
+        <th scope="col">Perumahan</th>
+        <th scope="col">Blok</th>
+        <th scope="col">Konsumen</th>
+        <th scope="col">Status</th>
+        {{-- <th scope="col">Jadwal Wawancara</th> --}}
         <th scope="col">Jadwal Akad</th>
         <th scope="col">Aksi</th>
       </tr>
@@ -38,26 +40,36 @@
                     <td>{{ $pj->unit->blok}}</td>
                     <td>{{ $pj->nama_konsumen}}</td>
                     <td>
-                        
                         <form action="datapengajuan/{{$pj->id }}" method="post" class="">
-                            @method('patch')
-                            @csrf
-                            <input type="hidden" name="id" value="{{$pj->id}}">
-                            <select class="form-select" aria-label="Default select example" name="statusBerkas">
+                        @method('patch')
+                        @csrf
+                        <div class="form-group">
+                            <div class="input-group">
+                              <select class="custom-select" id="status" name="statusBerkas" data-id="{{$pj->id}}">
                                 <option selected>{{$pj->status_berkas}}</option>
                                 <option value="Melengkapi Berkas">Melengkapi Berkas</option>
                                 <option value="Berkas Dikantor">Berkas Dikantor</option>
                                 <option value="Belum Wawancara">Belum Wawancara</option>
-                                <option value="Sudah Wawancara">Sudah Wawancara</option> {{-- nanti ditulis status ny ap bae disini samo value ny jg --}}
+                                <option value="Sudah Wawancara">Sudah Wawancara</option>
                                 <option value="On Proses">On Proses</option> 
-                                <option value="SP3K">SP3K</option> 
+                                <option value="SP3K" >SP3K</option> 
                                 <option value="Akad Kredit">Akad Kredit</option>
                               </select>
-                            </form>
-                        </td>
-                        <td></td>
-                    <td></td>
-
+                              <div class="input-group-append">
+                                <button class="btn btn-info btn-sm" type="submit">Simpan</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                    </td>
+                    <td>
+                        @if($pj->jadwalAkad != null)
+                        {{Carbon\carbon::parse($pj->jadwalAkad)->isoFormat('D MMMM Y')}}
+                        
+                        @else
+                        --
+                        @endif
+                    </td>
                     <td>
                         <button type="submit" class="btn btn-info">Detail</button>
                     </td>
@@ -65,8 +77,74 @@
                 @endforeach
                 </tbody>
 </table>
-</table>
     </div>
     </div>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+$(document).ready(function(){ //Make script DOM ready
+    $('#status').change(function() { //jQuery Change Function
+        var opval = $(this).val(); //Get value from select element
+        var id = $(this).data('id');
+        document.getElementById('formAkad').action='/datapengajuan/'+id;
+        document.getElementById('formTransfer').action='/transferPengajuan/'+id;
+        if(opval=="SP3K"){ //Compare it and if true
+            $('#modalAkad').modal("show"); //Open Modal
+        }
+        if(opval=="Akad Kredit"){ //Compare it and if true
+            $('#modalTransfer').modal("show"); //Open Modal
+        }
+    });
+});
+</script>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modalAkad" tabindex="-1" role="dialog" aria-labelledby="modalAkadTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Input Jadwal Akad</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" class="" id="formAkad">
+                @method('patch')
+                @csrf
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Jadwal Akad</label>
+                    <div class="col-sm-9">
+                        <input type="hidden" name="statusBerkas" value="SP3K">
+                        <input type="date" class="form-control" id="inputEmail3" placeholder="Email" name="jadwalAkad">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submin" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Transfer-->
+  <div class="modal fade" id="modalTransfer" tabindex="-1" role="dialog" aria-labelledby="modalTransferTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Transfer Data Pengajuan?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" class="" id="formTransfer">
+                @csrf
+                <button type="submin" class="btn btn-primary">Transfer</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </form>
+      </div>
+    </div>
+  </div>
 @endsection

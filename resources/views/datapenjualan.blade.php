@@ -25,7 +25,6 @@
         <th scope="col">No </th>
         <th scope="col">Nama Perumahan</th>
         <th scope="col">Blok</th>
-        <th scope="col">No</th>
         <th scope="col">Nama Konsumen</th>
         <th scope="col">Tanggal Akad</th>
         <th scope="col">Status Kavling</th>
@@ -33,22 +32,21 @@
       </tr>
     </thead>
             <tbody>
-                @foreach ($penjualan as $penjualan)
+                @foreach ($penjualan as $pj)
                 <tr>
                     <th scope="row">{{ $loop->iteration}}</th>
-                    <td>{{ $penjualan->nama_perumahan}}</td>
-                    <td>{{ $penjualan->blok}}</td>
-                    <td>{{ $penjualan->no}}</td>
-                    <td>{{ $penjualan->nama}}</td>
-                    <td>{{ $penjualan->tglakad}}</td>
-                    <td>{{ $penjualan->status}}</td>
+                    <td>{{ $pj->perumahan->nama}}</td>
+                    <td>{{ $pj->unit->blok}}</td>
+                    <td>{{ $pj->konsumen->nama_konsumen}}</td>
+                    <td>{{ $pj->tglakad}}</td>
+                    <td>{{ $pj->status}}</td>
                     @if(auth()->user()->role=='admin')
                     <td>
                         
                         {{-- <form action="datapenjualan/{{$penjualan->id }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf --}}
-                            <a href="ubahpenjualan/{{$penjualan->id}}/edit" class="btn btn-info">Edit</a>
+                            <a href="ubahpenjualan/{{$pj->id}}/edit" class="btn btn-info">Edit</a>
                             {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
                             <button type="button" class="btn btn-danger"data-toggle="modal" data-target="#hapusdatapenjualan" >Hapus</button>
                    
@@ -66,7 +64,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                <form action="/datapenjualan/{{$penjualan->id}}" method="post" class="d-inline ">
+                                <form action="/datapenjualan/{{$pj->id}}" method="post" class="d-inline ">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Ya</button>

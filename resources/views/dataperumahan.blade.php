@@ -1,7 +1,9 @@
 @extends('layout.tema')
    
 @section('container')
-
+@section('menuPerumahan')
+    active
+@endsection
 
 <div class="section-header">
     <a href="dataperumahan/tambahperumahan"class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Tambah Data Perumahan</a>
@@ -23,7 +25,8 @@
                 <th scope="col">No </th>
                 <th scope="col">Nama Perumahan</th>
                 <th scope="col">Tipe Rumah</th>
-                <th scope="col">Total Unit Rumah</th>
+                <th scope="col">Jumlah Kavling</th>
+                <th scope="col">Jumlah Rumah</th>
                 <th scope="col">Luas Lahan</th>
                 <th scope="col">Aksi</th>
               </tr>
@@ -34,7 +37,8 @@
                     <th scope="row">{{ $loop->iteration}}</th>
                     <td>{{ $perum->nama}}</td>
                     <td>{{ $perum->tiperumah}}</td>
-                    <td>{{ $perum->totalunit}}</td>
+                    <td>{{ hitungUnit($perum->id)}}</td>
+                    <td></td>
                     <td>{{ $perum->luaslahan}}</td>
                     <td>
                         <a href="dataperumahan/{{$perum->id}}/lihat" class="btn btn-info">Lihat</a>

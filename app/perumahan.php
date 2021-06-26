@@ -27,4 +27,13 @@ class perumahan extends Model
     {
         return $this->hasOne(unit::class);
     }
+    /**
+     * Get the penjualan associated with the perumahan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function penjualan()
+    {
+        return $this->hasOne(penjualan::class);
+    }
 }

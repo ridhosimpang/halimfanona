@@ -23,24 +23,20 @@
       <tr>
         <th scope="col">No </th>
         <th scope="col">Nama Konsumen</th>
-        <th scope="col">Nama Perumahan</th>
         <th scope="col">Blok</th>
-        <th scope="col">Nomor</th>
         <th scope="col">Nomor HP</th>
         <th scope="col">Aksi</th>
       </tr>
     </thead>
             <tbody>
-                @foreach ($konsumen as $konsumen)
+                @foreach ($konsumen as $ks)
                 <tr>
                     <th scope="row">{{ $loop->iteration}}</th>
-                    <td>{{ $konsumen->nama}}</td>
-                    <td>{{ $konsumen->namaperumahan}}</td>
-                    <td>{{ $konsumen->blok}}</td>
-                    <td>{{ $konsumen->no}}</td>
-                    <td>{{ $konsumen->nohp}}</td>
+                    <td>{{$ks->nama_konsumen}}</td>
+                    <td>{{$ks->unit->blok}}</td>
+                    <td>{{$ks->no_hp}}</td>
                     <td>
-                            <a href="/detailkonsumen/{{$konsumen->id}}" class="btn btn-info" >Detail</a>
+                            <a href="/detailkonsumen/{{$ks->id}}" class="btn btn-info" >Detail</a>
                         </td>
                 </tr>
                 @endforeach

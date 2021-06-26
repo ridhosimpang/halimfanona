@@ -17,7 +17,7 @@ class DatapenjualanController extends Controller
      */
     public function index()
     {
-        $penjualan = DB::table('penjualan')->get();
+        $penjualan = penjualan::get();
         return view('datapenjualan', ['penjualan' => $penjualan]);
     }
 

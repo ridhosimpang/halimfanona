@@ -30,7 +30,7 @@
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
           </ul>
-          <div class="search-element">
+          {{-- <div class="search-element">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
             <div class="search-backdrop"></div>
@@ -91,10 +91,10 @@
                 </a>
               </div>
             </div>
-          </div>
+          </div> --}}
         </form>
         <ul class="navbar-nav navbar-right">
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+          {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Messages
                 <div class="float-right">
@@ -159,8 +159,8 @@
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
-          </li>
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+          </li> --}}
+          {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Notifications
                 <div class="float-right">
@@ -218,7 +218,7 @@
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
-          </li>
+          </li> --}}
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
@@ -254,8 +254,8 @@
             <li><a class="nav-link" href="/admin"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
             @if(auth()->user()->role=='admin')
               <li class="menu-header">Menu Pelanggan</li>
-              <li><a class="nav-link mb-3" href="/dataperumahan"><i class="fas fa-home" style="font-size: 20px"></i> <span>Data Perumahan</span></a></li>
-              <li><a class="nav-link mb-3" href="/datapengajuan"><i class="fas fa-clipboard-check" style="font-size: 20px"></i> <span>Data Pengajuan</span></a></li>
+              <li class="@yield('menuPerumahan')"><a class="nav-link mb-3" href="/dataperumahan"><i class="fas fa-home" style="font-size: 20px"></i> <span>Data Perumahan</span></a></li>
+              <li class="@yield('menuPengajuan')"><a class="nav-link mb-3" href="/datapengajuan"><i class="fas fa-clipboard-check" style="font-size: 20px"></i> <span>Data Pengajuan</span></a></li>
               <li><a class="nav-link mb-3" href="/datakonsumen"><i class="fas fa-user-friends" style="font-size: 20px"></i> <span>Data Konsumen</span></a></li>
               <li><a class="nav-link mb-3" href="/datapenjualan"><i class="fas fa-money-bill-wave" style="font-size: 20px"></i> <span>Data Penjualan</span></a></li>
 

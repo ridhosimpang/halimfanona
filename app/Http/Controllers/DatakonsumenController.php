@@ -17,7 +17,8 @@ class DatakonsumenController extends Controller
      */
     public function index()
     {
-        $konsumen = DB::table('konsumen')->get();
+        $konsumen = konsumen::get();
+        // dd($konsumen);
         return view('datakonsumen', ['konsumen' => $konsumen]);
     }
 
