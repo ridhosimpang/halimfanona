@@ -28,14 +28,17 @@ Route::get('/project', function () {
     return view('project');
 });
 
-Route::get('/admin', function () {	
-    return view('admin');
-});
+Route::get('/admin', 'DashboardController@index');
+// Route::get('/admin', function () {	
+//     return view('admin');
+// });
 Route::get('/direktur', function () {	
     return view('direktur');
 });
 
-Auth::routes();
+// Auth::routes();
+Route::get('/setting', 'DashboardController@setting')->name('setting');
+Route::patch('/gantiFoto/{id}', 'DashboardController@gantiFoto')->name('gantiFoto');
 
 Route::get('/dataperumahan', 'DataperumahanController@index');
 Route::get('/dataperumahan/tambahperumahan', 'DataperumahanController@create');

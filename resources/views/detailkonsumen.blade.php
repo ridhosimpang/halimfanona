@@ -3,10 +3,12 @@
 @section('container')
 
 <!-- /subnavbar -->
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="/detailkonsumen">Data Konsumen</a>
-  </nav>
-
+<div class="section-header bg-primary"> </div>
+  
+<div class="card">
+  <div class="card-header">
+      <h4> Detail Konsumen </h4>
+</div>
   <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
           <div class="row">
             <div class="col-md-3">

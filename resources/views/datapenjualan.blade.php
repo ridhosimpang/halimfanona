@@ -3,10 +3,10 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="section-header">
-        <h1>DATA PENJUALAN</h1>
+<div class="section-header bg-primary">
+          
         @if(auth()->user()->role=='admin')
-               <a href="datapenjualan/tambahpenjualan" class=" btn btn-info mb-2 " style="display: flex; margin-left:auto;">TAMBAH DATA PENJUALAN</a>
+               
 @endif
 </div>
 @if (session('status'))

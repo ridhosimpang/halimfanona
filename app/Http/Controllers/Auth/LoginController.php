@@ -39,7 +39,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -58,7 +58,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email','password'))){
             return redirect('/admin');
         }else{
-            redirect('/login');
+            redirect('/loginAdmin');
         }
     }
 
