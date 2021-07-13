@@ -36,4 +36,13 @@ class perumahan extends Model
     {
         return $this->hasOne(penjualan::class);
     }
+    /**
+     * Get all of the konsumen for the perumahan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function konsumen()
+    {
+        return $this->hasMany(konsumen::class);
+    }
 }

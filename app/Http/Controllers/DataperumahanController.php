@@ -41,22 +41,21 @@ class DataperumahanController extends Controller
      */
     public function store(Request $request)
     {
+        // dd ($request);
         $rules =[ 
             'nama' => 'required', 
             'tiperumah' => 'required',
-            'luasrumah' => 'required',
             'totalunit' => 'required',
             'luaslahan' => 'required'
-            // 'foto' => 'required'
             
         ];
         $costumMessages = [
             'required' =>':attribute tidak boleh kosong'
         ];
 
-        $requestData = $request->all();
         $this->validate($request,$rules,$costumMessages);
-
+        $requestData = $request->all();
+        // dd($requestData);
         perumahan::create($requestData);
 
         return redirect('/dataperumahan')->with('status', 'Data Perumahan Berhasil Ditambahkan');

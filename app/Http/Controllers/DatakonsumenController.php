@@ -60,6 +60,12 @@ class DatakonsumenController extends Controller
         // $requestData ['foto'] = $request->file('foto')->store('public/gambar');
 
         $requestData = $request->all();
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto')->store('public/konsumen/foto');
+            $requestData['foto']=$foto;
+        }else{
+            unset($requestData['foto']);
+        }
         $this->validate($request,$rules,$costumMessages);
         // dd($requestData);ate
         konsumen::create($requestData);

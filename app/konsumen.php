@@ -32,4 +32,13 @@ class konsumen extends Model
     {
         return $this->hasOne(penjualan::class);
     }
+    /**
+     * Get the perumahan that owns the konsumen
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function perumahan()
+    {
+        return $this->belongsTo(perumahan::class);
+    }
 }

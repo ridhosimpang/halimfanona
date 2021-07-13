@@ -234,6 +234,51 @@
 @enderror
   </div>
     </div>
+    <div class="form-group row">
+      <label for="foto" class="col-sm-3 col-form-label"> Foto</label>
+      <div class="col-sm-9 ">
+          <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto" value="{{ old('foto')}}">
+          @error('foto')
+          <div class="invalid-feedback">{{$message}}</div>
+          @enderror
+        </div>  
+    </div>
+    <div class="form-group row">
+      <label for="fotoktp" class="col-sm-3 col-form-label"> Foto KTP</label>
+      <div class="col-sm-9 ">
+          <input type="file" class="form-control @error('fotoktp') is-invalid @enderror" id="fotoktp" name="fotoktp" value="{{ old('fotoktp')}}">
+          @error('fotoktp')
+          <div class="invalid-feedback">{{$message}}</div>
+          @enderror
+        </div>  
+    </div>
+    <div class="form-group row">
+      <label for="fotokk" class="col-sm-3 col-form-label"> Foto KK</label>
+      <div class="col-sm-9 ">
+          <input type="file" class="form-control @error('fotokk') is-invalid @enderror" id="fotokk" name="fotokk" value="{{ old('fotokk')}}">
+          @error('fotokk')
+          <div class="invalid-feedback">{{$message}}</div>
+          @enderror
+        </div>  
+    </div>
+    <div class="form-group row">
+      <label for="fotonpwp" class="col-sm-3 col-form-label"> Foto NPWP</label>
+      <div class="col-sm-9 ">
+          <input type="file" class="form-control @error('fotonpwp') is-invalid @enderror" id="fotonpwp" name="fotonpwp" value="{{ old('fotonpwp')}}">
+          @error('fotonpwp')
+          <div class="invalid-feedback">{{$message}}</div>
+          @enderror
+        </div>  
+    </div>
+    <div class="form-group row">
+      <label for="fotobukunikah" class="col-sm-3 col-form-label"> Foto Buku Nikah</label>
+      <div class="col-sm-9 ">
+          <input type="file" class="form-control @error('fotobukunikah') is-invalid @enderror" id="fotobukunikah" name="fotobukunikah" value="{{ old('fotobukunikah')}}">
+          @error('fotobukunikah')
+          <div class="invalid-feedback">{{$message}}</div>
+          @enderror
+        </div>  
+        </div>
 
 <div class="card-footer text-right">
 <a href="/datakonsumen" class="btn btn-light">Kembali</a>      
