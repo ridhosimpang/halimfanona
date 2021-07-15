@@ -26,7 +26,6 @@
                 <th scope="col">Nama Perumahan</th>
                 <th scope="col">Tipe Rumah</th>
                 <th scope="col">Jumlah Kavling</th>
-                <th scope="col">Jumlah Rumah</th>
                 <th scope="col">Luas Lahan</th>
                 <th scope="col">Aksi</th>
               </tr>
@@ -38,7 +37,6 @@
                     <td>{{ $perum->nama}}</td>
                     <td>{{ $perum->tiperumah}}</td>
                     <td>{{ hitungUnit($perum->id)}}</td>
-                    <td></td>
                     <td>{{ $perum->luaslahan}}</td>
                     <td>
                         <a href="dataperumahan/{{$perum->id}}/lihat" class="btn btn-info">Lihat</a>
