@@ -14,11 +14,11 @@
               @method('patch')
                 @csrf
                   <div class="form-group row">
-                    <label for="nama" class="col-sm-3 col-form-label">Nama Konsumen</label>
+                    <label for="nama_konsumen" class="col-sm-3 col-form-label">Nama Konsumen</label>
                     <div class="col-sm-9 ">
-                      <input type="text" class="form-control @error('nama') is-invalid
-                       @enderror" id="nama" placeholder="Masukan Nama Konsumen" name="nama" value="{{$konsumen->nama}}">
-                      @error('nama')
+                      <input type="text" class="form-control @error('nama_konsumen') is-invalid
+                       @enderror" id="nama_konsumen" placeholder="Masukan Nama Konsumen" name="nam_konsumen" value="{{$konsumen->nama_konsumen}}">
+                      @error('nama_konsumen')
                                 <div class="invalid-feedback " style="color:red">{{$message}}</div>
                         @enderror
                     </div>
@@ -33,10 +33,10 @@
                       </div>
                     </div>
                       <div class="form-group row">
-                        <label for="tmptlhr" class="col-sm-3 col-form-label">Tempat Lahir</label>
+                        <label for="tempat_lahir" class="col-sm-3 col-form-label">Tempat Lahir</label>
                         <div class="col-sm-9 ">
-                          <input type="text" class="form-control @error('tmptlhr') is-invalid @enderror" id="tmptlhr" placeholder="Masukan Tempat Lahir" name="tmptlhr" value="{{$konsumen->tmptlhr}}">
-                      @error('tmptlhr')
+                          <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" placeholder="Masukan Tempat Lahir" name="tempat_lahir" value="{{$konsumen->tempat_lahir}}">
+                      @error('tempat_lahir')
                                 <div class="invalid-feedback " style="color:red">{{$message}}</div>
                         @enderror
                         </div>

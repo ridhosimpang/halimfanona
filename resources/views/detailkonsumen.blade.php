@@ -56,8 +56,29 @@
       <td> : {{$konsumen->no_hp}}</td>
     </tr>
     <tr>
-      <td>KTP</td>
-      <td><input type="file" name="ktp" id=""></td>
+      <td>Foto</td>
+      <td><img src="{{Storage::url($konsumen->foto)}}" alt=""></td>
+      {{-- <td><input type="file" name="ktp" id=""></td> --}}
+    </tr>
+    <tr>
+      <td>Foto KTP</td>
+      <td><img src="{{Storage::url($konsumen->fotoktp)}}" alt=""></td>
+      {{-- <td><input type="file" name="ktp" id=""></td> --}}
+    </tr>
+    <tr>
+      <td>Foto KK</td>
+      <td><img src="{{Storage::url($konsumen->fotokk)}}" alt=""></td>
+      {{-- <td><input type="file" name="ktp" id=""></td> --}}
+    </tr>
+    <tr>
+      <td>Foto NPWP</td>
+      <td><img src="{{Storage::url($konsumen->fotonpwp)}}" alt=""></td>
+      {{-- <td><input type="file" name="ktp" id=""></td> --}}
+    </tr>
+    <tr>
+      <td>Foto Buku Nikah</td>
+      <td><img src="{{Storage::url($konsumen->fotobukunikah)}}" alt=""></td>
+      {{-- <td><input type="file" name="ktp" id=""></td> --}}
     </tr>
   </tbody>
 </table>

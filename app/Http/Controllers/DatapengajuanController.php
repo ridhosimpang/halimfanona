@@ -64,8 +64,39 @@ class DatapengajuanController extends Controller
         ]; 
         // $requestData ['foto'] = $request->file('foto')->store('public/gambar');
 
-        $requestData = $request->all();
         $this->validate($request,$rules,$costumMessages);
+        $requestData = $request->all();
+        if ($request->hasFile('foto')) {
+            $fileFoto            = $request->file('foto')->store('public/konsumen');
+            $requestData['foto'] = $fileFoto;
+        } else {
+            unset($requestData['foto']);
+        }
+        if ($request->hasFile('fotoktp')) {
+            $filefotoktp            = $request->file('fotoktp')->store('public/konsumen');
+            $requestData['fotoktp'] = $filefotoktp;
+        } else {
+            unset($requestData['foto']);
+        }
+        if ($request->hasFile('fotokk')) {
+            $filefotokk            = $request->file('fotokk')->store('public/konsumen');
+            $requestData['fotokk'] = $filefotokk;
+        } else {
+            unset($requestData['fotokk']);
+        }
+        if ($request->hasFile('fotonpwp')) {
+            $filefotonpwp            = $request->file('fotonpwp')->store('public/konsumen');
+            $requestData['fotonpwp'] = $filefotonpwp;
+        } else {
+            unset($requestData['fotonpwp']);
+        }
+        if ($request->hasFile('fotobukunikah')) {
+            $filefotobukunikah            = $request->file('fotobukunikah')->store('public/konsumen');
+            $requestData['fotobukunikah'] = $filefotobukunikah;
+        } else {
+            unset($requestData['fotobukunikah']);
+        }
+        // dd($requestData);
         pengajuan::create($requestData);
 
         $updateUnit = unit::find($request->unit_id)->update(['pengajuan'=>$request->nama_konsumen]);
@@ -141,7 +172,9 @@ class DatapengajuanController extends Controller
     	    $cari = $request->q;
             $id = $request->id;
     		$data = unit::select('id', 'blok')->where('blok', 'LIKE', '%'.$cari.'%')
-                                                    ->where('perumahan_id',$id)->get();
+                                                    ->where('perumahan_id',$id)
+                                                    ->where('konsumen_id',null)
+                                                    ->get();
 
     		return response()->json($data);
     	}
@@ -157,6 +190,7 @@ class DatapengajuanController extends Controller
         $requestPenjualan['konsumen_id']=$cekKonsumen->id; 
         $requestPenjualan['tglakad']=$id->jadwalAkad; 
         $requestPenjualan['status']="Terjual";
+        // dd($requestData);
         penjualan::create($requestPenjualan); 
         $id->delete();
         return redirect()->route('pengajuan')->with('status','Data Pengajuan berhasil diterima');

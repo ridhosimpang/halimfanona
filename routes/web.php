@@ -85,3 +85,5 @@ Route::post('/lihatperumahan/{id}','DataperumahanController@tambah');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/konsumenPerumahan/{id}', 'DatakonsumenController@konsumenPerumahan')->name('konsumenPerumahan');
+

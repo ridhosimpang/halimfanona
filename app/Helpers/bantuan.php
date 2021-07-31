@@ -18,3 +18,11 @@ function terjual($perumahanId){
   }
   return 0;
 }
+function unitTerjual($perumahanId){
+  $terjual = penjualan::where('perumahan_id',$perumahanId)->count();
+
+  if($terjual != null){
+    return $terjual;
+  }
+  return 0;
+}

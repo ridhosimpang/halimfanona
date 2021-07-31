@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\konsumen;
+use App\perumahan;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,9 @@ class DatakonsumenController extends Controller
      */
     public function index()
     {
-        $konsumen = konsumen::get();
+        $perumahan = perumahan::all();
         // dd($konsumen);
-        return view('datakonsumen', ['konsumen' => $konsumen]);
+        return view('datakonsumen', ['perumahan' => $perumahan]);
     }
 
     /**
@@ -151,5 +152,10 @@ class DatakonsumenController extends Controller
     {
         konsumen::destroy($konsumen->id);
         return redirect('/datakonsumen')->with('status', 'Data konsumen Berhasil Dihapus');
+    }
+    public function konsumenPerumahan(perumahan $id){
+        $konsumen=konsumen::where('perumahan_id',$id->id)->get();
+
+        return view('konsumenPerumahan',compact('id','konsumen'));
     }
 }

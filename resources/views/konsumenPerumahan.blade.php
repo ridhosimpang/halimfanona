@@ -6,7 +6,7 @@
 
 <!-- /subnavbar -->
 <div class="section-header">
-        <h1>Data Konsumen</h1>
+        <h1>Data Konsumen {{$id->nama}}</h1>
         {{-- <a href="datakonsumen/tambahkonsumen" class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Tambah Data Konsumen</a> --}}
 </div>
 
@@ -17,34 +17,33 @@
 @endif
 <div class="card">
     <div class="card-header">
-        <h4> Daftar Perumahan </h4>
+        <h4> Daftar Konsumen</h4>
 </div>
 <div class="card-body">
 <table class="table table-hover" id="table">
     <thead>
       <tr>
         <th scope="col">No </th>
-        <th scope="col">Nama Perumahan</th>
-        <th scope="col">Tipe Rumah</th>
-        <th scope="col">Jumlah Kavling</th>
-        <th scope="col">Jumlah Pembelian</th>
+        <th scope="col">Nama Konsumen</th>
+        <th scope="col">No Telp</th>
+        <th scope="col">Blok</th>
         <th scope="col">Aksi</th>
       </tr>
     </thead>
-            <tbody>
-                @foreach ($perumahan as $ks)
-                <tr>
-                    <th scope="row">{{ $loop->iteration}}</th>
-                    <td>{{$ks->nama}}</td>
-                    <td>{{$ks->tiperumah}}</td>
-                    <td>{{ hitungUnit($ks->id)}} Unit</td>
-                    <td>{{unitTerjual($ks->id)}} Unit</td>
-                    <td>
-                            <a href="/konsumenPerumahan/{{$ks->id}}" class="btn btn-info" >Lihat Konsumen</a>
-                        </td>
-                </tr>
-                @endforeach
-                </tbody>
+    <tbody>
+        @foreach ($konsumen as $ks)
+        <tr>
+            <th scope="row">{{ $loop->iteration}}</th>
+            <td>{{$ks->nama_konsumen}}</td>
+            <td>{{$ks->no_hp}}</td>
+            <td>{{$ks->unit->blok}}</td>
+            {{-- <td></td> --}}
+            <td>
+                    <a href="/detailkonsumen/{{$ks->id}}" class="btn btn-info" >Detail</a>
+                </td>
+        </tr>
+        @endforeach
+        </tbody>
 </table>
     </div>
     </div>
