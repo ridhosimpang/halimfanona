@@ -45,7 +45,6 @@ class DataperumahanController extends Controller
         $rules =[ 
             'nama' => 'required', 
             'tiperumah' => 'required',
-            'totalunit' => 'required',
             'luaslahan' => 'required'
             
         ];
@@ -101,7 +100,6 @@ class DataperumahanController extends Controller
             'nama' => 'required',
             'tiperumah' => 'required',
             'luasrumah' => 'required',
-            'totalunit' => 'required',
             'luaslahan' => 'required'
             // 'foto' => 'required'
             ]);
@@ -112,8 +110,6 @@ class DataperumahanController extends Controller
             ->update([
                 'nama' => $request->nama,
                 'tiperumah' => $request->tiperumah,
-                'luasrumah' => $request->luasrumah,
-                'totalunit' => $request->totalunit,
                 'luaslahan' => $request->luaslahan,
                 'foto' => $request->foto
             ]);
@@ -154,5 +150,18 @@ class DataperumahanController extends Controller
         perumahan::destroy($perum->id);
         return redirect('/dataperumahan')->with('status', 'Data Perumahan Berhasil Dihapus');
 
+    }
+    public function editBlok (unit $id, Request $request){
+        $requestData = $request->all();
+        $id->update($requestData);
+
+        return redirect()->back()->with('status','Data berhasil dirubah');
+    }
+    public function hapusBlok(unit $id){
+        if($id->konsumen){
+            return redirect()->back()->with('error','Data Unit Telah Dimiliki Konsumen, Data gagal dihapus!');
+        }
+        unit::destroy($id->id);
+        return redirect()->back()->with('error','Data Berhasil Dihapus');
     }
 }

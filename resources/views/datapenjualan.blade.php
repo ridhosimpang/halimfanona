@@ -18,7 +18,12 @@
 @endif
 <div class="card">
     <div class="card-header">
-        <h4> Data Penjualan </h4>
+        <div class="col-10">
+            <h4> Data Penjualan </h4>
+        </div>
+        <div class="col-2">
+            <a href="{{route('exportPenjualan')}}" class="btn btn-success "> <i class="fas fa-file-excel    "></i> Export</a>
+        </div>
 </div>
 <div class="card-body">
 <table class="table table-hover" id="tabelpenjualan">

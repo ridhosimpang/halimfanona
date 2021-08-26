@@ -192,6 +192,7 @@ class DatapengajuanController extends Controller
         $requestPenjualan['status']="Terjual";
         // dd($requestData);
         penjualan::create($requestPenjualan); 
+        $updateUnit = unit::find($id->unit_id)->update(['konsumen_id'=>$cekKonsumen->id]);
         $id->delete();
         return redirect()->route('pengajuan')->with('status','Data Pengajuan berhasil diterima');
     }

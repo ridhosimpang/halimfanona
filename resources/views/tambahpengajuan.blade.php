@@ -3,10 +3,21 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="section-header">
-    <h1>Form tambah pengajuan konsumen</h1>
+<div class="section-header bg-primary">
     
 </div>
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status')}}
+</div>
+@endif
+<div class="card">
+    <div class="card-header">
+        <div class="col-10">
+            <h4> Form Tambah Pengajuan Konsumen</h4>
+        </div>
+</div>
+<div class="card-body">
 <div class="card">
   <form method="POST" action="{{route('pengajuanSimpan')}}" enctype="multipart/form-data">
     @csrf

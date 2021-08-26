@@ -3,12 +3,22 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    <div class="row">
-    <div class="col-10">
-        <center> <h1>FORM TAMBAH DATA ADMIN</h1> </center>
+<div class="section-header bg-primary">
     
-        <div class="card-body">
+</div>
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status')}}
+</div>
+@endif
+<div class="card">
+    <div class="card-header">
+        <div class="col-10">
+            <h4> Form Tambah Admin </h4>
+        </div>
+
+</div>
+<div class="card-body">
                     
             <form method="POST" action="/simpanadmin">
                 @csrf
@@ -40,9 +50,10 @@
                         @enderror
                           </div>
                         </div>
-                            <button type="submit" class="btn btn-primary btn-block py-2"> Tambah Data</button>
-                    <a href="/dataperumahan" class="btn btn-secondary btn-block py-2">Kembali</a>
-                       
+                            <div class="card-footer text-center">
+                              <a href="/datakonsumen" class="btn btn-secondary">Kembali</a>      
+                              <button type="submit" class="btn btn-primary">Tambah Data</button>
+                      </div>
             </form>
         </div>
     </div>

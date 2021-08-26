@@ -7,7 +7,8 @@ use App\penjualan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\penjualanExport;
 class DatapenjualanController extends Controller
 {
     /**
@@ -127,5 +128,10 @@ class DatapenjualanController extends Controller
     {
         penjualan::destroy($penjualan->id);
         return redirect('/datapenjualan')->with('status', 'Data penjualan Berhasil Dihapus');
+    }
+    public function exportPenjualan (Request $request){
+        // dd($request);
+        $penjualan = penjualan::all();
+        return Excel::download(new penjualanExport ($penjualan), 'Penjualan.xlsx');
     }
 }

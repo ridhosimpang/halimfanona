@@ -48,6 +48,8 @@ Route::delete('/dataperumahan/{perum}', 'DataperumahanController@destroy');
 Route::get('/dataperumahan/{perum}/edit', 'DataperumahanController@edit');
 Route::get('/dataperumahan/{perum}/lihat', 'DataperumahanController@lihat')->name('lihatPerumahan');
 Route::patch('/dataperumahan/{perum}', 'DataperumahanController@update');
+Route::post('/editBlok/{id}', 'DataperumahanController@editBlok');
+Route::delete('/hapusBlok/{id}', 'DataperumahanController@hapusBlok');
 
 Route::get('/datakonsumen', 'DatakonsumenController@index');
 Route::get('/detailkonsumen/{konsumen}', 'DatakonsumenController@show');
@@ -63,6 +65,7 @@ Route::post('/datapenjualan', 'DatapenjualanController@store');
 Route::delete('/datapenjualan/{penjualan}', 'DatapenjualanController@destroy');
 Route::get('/ubahpenjualan/{penjualan}/edit', 'DatapenjualanController@edit');
 Route::patch('/datapenjualan/{penjualan}', 'DatapenjualanController@update');
+Route::get('/penjualanExport', 'DatapenjualanController@exportPenjualan')->name('exportPenjualan');
 
 Route::get('/datapengajuan', 'DatapengajuanController@index')->name('pengajuan');
 Route::get('/datapengajuan/tambahpengajuan', 'DatapengajuanController@createPengajuan')->name('tambahPengajuan');

@@ -40,7 +40,7 @@
                     <td>{{ $perum->luaslahan}}</td>
                     <td>
                         <a href="dataperumahan/{{$perum->id}}/lihat" class="btn btn-info">Lihat</a>
-                        <button type="button" class="btn btn-danger"data-toggle="modal" data-target="#hapusdataperumahan{{$perum->id}}" >Hapus</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapusdataperumahan{{$perum->id}}" >Hapus</button>
                         <div class="modal fade" id="hapusdataperumahan{{$perum->id}}" data-backdrop="false" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">

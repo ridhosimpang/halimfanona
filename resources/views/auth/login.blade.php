@@ -67,11 +67,11 @@
             
             <form action="/postLogin" method="post" style="margin-top: 50px">
             @csrf
-                <h1>LOGIN</h1>		
+                <h1 class="mb-4">LOGIN</h1>		
                 
-                <div class="login-fields">
+                <div class="login-fields mt-3">
                     
-                    <p>Please provide your details</p>
+                    <p>Masukan username/email dan password anda</p>
                     
                     <div class="field">
                         <label for="username">Username</label>

@@ -83,9 +83,10 @@
           <ul>
             <li class="active"><a href="#header">Home</a></li>
             <li><a href="#profil">Profil</a></li>
-            <li><a href="/">Project</a></li>
             <li><a href="#contact">Contact</a></li>
-           <li><a href="/loginAdmin"> Login</a></li>
+           <li class="get-started">
+             <a href="/loginAdmin"> Login</a>
+            </li>
             
             {{-- <li class="get-started"><a href="#about">Login</a></li> --}}
           </ul>

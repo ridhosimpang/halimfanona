@@ -3,11 +3,21 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="section-header">
-    <h1>Form Tambah Perumahan</h1>
+<div class="section-header bg-primary">
     
 </div>
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status')}}
+</div>
+@endif
 <div class="card">
+    <div class="card-header">
+        <div class="col-10">
+            <h4> Form Tambah Perumahan</h4>
+        </div>
+</div>
+<div class="card-body">
 <form method="POST" action="/dataperumahan">
 @csrf
                   <div class="card-body">
@@ -39,7 +49,7 @@
               </div>
           {{-- </div> --}}
       </fieldset>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                           <label for="totalunit" class="col-sm-2 col-form-label">Total Unit</label>
                           <div class="col-sm-5 ">
                             <input type="text" class="form-control @error('totalunit') is-invalid @enderror" id="totalunit" placeholder="Masukan Total Unit" name="totalunit">
@@ -47,7 +57,7 @@
                                 <div class="invalid-feedback " style="color:red">{{$message}}</div>
                         @enderror
                           </div>
-                        </div>
+                        </div> --}}
                           <div class="form-group">
                             <label for="luaslahan" class="col-sm-2 col-form-label">Luas lahan</label>
                             <div class="col-sm-5 ">
@@ -66,7 +76,7 @@
                                 @enderror
                               </div>  
                           </div>
-                          <div class="card-footer text-right">
+                          <div class="card-footer text-left">
                     <a href="/dataperumahan" class="btn btn-light">Kembali</a>      
                             <button type="submit" class="btn btn-primary">Tambah Data</button>
                     </div>  
