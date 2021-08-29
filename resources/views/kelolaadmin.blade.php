@@ -41,7 +41,7 @@
                         
                             <button type="button" class="btn btn-danger"data-toggle="modal" data-target="#hapusdataadmin{{$adm->id}}" >Hapus</button>
                    
-                            <div class="modal fade" id="hapusdataadmin{{$adm->id}}" tabindex="-1" role="dialog">
+                            <div class="modal fade" id="hapusdataadmin{{$adm->id}}" data-backdrop="false" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">

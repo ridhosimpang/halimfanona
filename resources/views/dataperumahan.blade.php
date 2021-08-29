@@ -5,7 +5,7 @@
     active
 @endsection
 
-<div class="section-header">
+<div class="section-header align-right">
     <a href="dataperumahan/tambahperumahan"class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Tambah Data Perumahan</a>
 </div>
         

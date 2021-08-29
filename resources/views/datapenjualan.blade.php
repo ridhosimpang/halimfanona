@@ -57,7 +57,7 @@
                             {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
                             <button type="button" class="btn btn-danger"data-toggle="modal" data-target="#hapusdatapenjualan" >Hapus</button>
                    
-                            <div class="modal fade" id="hapusdatapenjualan" tabindex="-1" role="dialog">
+                            <div class="modal fade" id="hapusdatapenjualan" data-backdrop="false" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
