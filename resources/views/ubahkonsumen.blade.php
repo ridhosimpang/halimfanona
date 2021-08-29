@@ -19,16 +19,90 @@
 </div>
 <div class="card-body">
   <div class="card">
-                  <div class="form-group row">
-                    <label for="nama_konsumen" class="col-sm-3 col-form-label">Nama Konsumen</label>
-                    <div class="col-sm-9 ">
-                      <input type="text" class="form-control @error('nama_konsumen') is-invalid
-                       @enderror" id="nama_konsumen" placeholder="Masukan Nama Konsumen" name="nam_konsumen" value="{{$konsumen->nama_konsumen}}">
-                      @error('nama_konsumen')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                    </div>
-                  </div>
+    <div class="form-group row">
+      <label for="namaperumahan" class="col-sm-3 col-form-label">Nama Perumahan</label>
+      <div class="col-sm-9 ">
+        <input type="hidden" name="" id="perum">
+        <select class="cari form-control" style="width:300px;height:calc(1.5em + .75rem + 2px);" name="perumahan_id"></select>
+        {{-- <input type="text" class="form-control @error('objek') is-invalid @enderror" name="objek" value="{{old('objek')}}"> --}}
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+        <script type="text/javascript">
+          $('.cari').select2({
+                              placeholder: 'Pilih Perumahan...',
+                              ajax: {
+                              url: '/cariPerumahan',
+                              dataType: 'json',
+                              delay: 250,
+                              processResults: function (data) {
+                                  return {
+                                  results:  $.map(data, function (item) {
+                                      return {
+                                      text: item.nama, /* memasukkan text di option => <option>namaSurah</option> */
+                                      id: item.id /* memasukkan value di option => <option value=id> */
+                                      }
+                                  })
+                                  };
+                              },
+                              cache: true
+                              }
+                          });
+          $('.cari').change(function(){
+            if($(this).val()!= ''){
+              var perumahan_id = $(this).val();
+              document.getElementById('perum').value=perumahan_id;
+            }
+          });
+          </script>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="blok" class="col-sm-3 col-form-label">Blok</label>
+      <div class="col-sm-9 ">
+        <select class="cariBlok form-control" style="width:300px;height:calc(1.5em + .75rem + 2px);" name="unit_id"></select>
+        {{-- <input type="text" class="form-control @error('objek') is-invalid @enderror" name="objek" value="{{old('objek')}}"> --}}
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+        <script type="text/javascript">
+          var id = document.getElementById('perum').value;
+          // console.log(id);
+          $('.cariBlok').select2({
+                              placeholder: 'Pilih Blok...',
+                              ajax: {
+                              url: '/cariBlok',
+                              dataType: 'json',
+                              delay: 250,
+                              data: function (params) {
+                                return {
+                                  q: params.term, // search term
+                                  id:document.getElementById('perum').value
+                                };
+                              },
+                              processResults: function (data) {
+                                  return {
+                                  results:  $.map(data, function (item) {
+                                      return {
+                                      text: item.blok, /* memasukkan text di option => <option>namaSurah</option> */
+                                      id: item.id /* memasukkan value di option => <option value=id> */
+                                      }
+                                  })
+                                  };
+                              },
+                              cache: true
+                              }
+                          });
+          </script>
+    </div>
+    </div>
+    <div class="form-group row">
+      <label for="nama_konsumen" class="col-sm-3 col-form-label">Nama Konsumen</label>
+      <div class="col-sm-9 ">
+        <input type="text" class="form-control @error('nama_konsumen') is-invalid @enderror" id="nama_konsumen" placeholder="Masukan nama konsumen" name="nama_konsumen">
+        @error('nama_konsumen')
+                  <div class="invalid-feedback " style="color:red">{{$message}}</div>
+          @enderror
+      </div>
+    </div>
                     <div class="form-group row">
                       <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                       <div class="col-sm-9 ">
@@ -158,34 +232,6 @@
           </div>
       {{-- </div> --}}
   </fieldset>
-  
-                          <div class="form-group row">
-                            <label for="namaperumahan" class="col-sm-3 col-form-label">Nama Perumahan</label>
-                            <div class="col-sm-9 ">
-                              <input type="text" class="form-control @error('namaperumahan') is-invalid @enderror" id="namaperumahan" placeholder="Masukan Nama Perumahan" name="namaperumahan" value="{{$konsumen->namaperumahan}}">
-                      @error('namaperumahan')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="blok" class="col-sm-3 col-form-label">Blok</label>
-                            <div class="col-sm-9 ">
-                              <input type="text" class="form-control @error('blok') is-invalid @enderror" id="blok" placeholder="Masukan Blok" name="blok" value="{{$konsumen->blok}}">
-                      @error('blok')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="no" class="col-sm-3 col-form-label">Nomor</label>
-                            <div class="col-sm-9 ">
-                              <input type="text" class="form-control @error('no') is-invalid @enderror" id="no" placeholder="Masukan Nomor" name="no" value="{{$konsumen->no}}">
-                      @error('no')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                            </div>
-                          </div>
                           <div class="form-group row">
                             <label for="nohp" class="col-sm-3 col-form-label">Nomor Handphone</label>
                             <div class="col-sm-9 ">
