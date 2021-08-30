@@ -3,11 +3,11 @@
 @section('container')
 
 <!-- /subnavbar -->
-<div class="col-sm-8 col-sm-offset-3 col-lg-100 col-lg-offset-3 main">
-    <div class="row">
-    <div class="col-10">
-        <center> <h1>FORM UBAH DATA KONSUMEN</h1> </center>
-    
+<div class="section-header">
+  <h1>Form Ubah Konsumen</h1>
+  
+</div>
+<div class="card">      
         <div class="card-body">
                     
             <form method="post" action="/datakonsumen/{{ $konsumen->id }}">
@@ -289,13 +289,15 @@
                                 <div class="invalid-feedback">{{$message}}</div>
                                 @enderror
                               </div>  
-                          
-                              <button type="submit" class="btn btn-primary btn-block py-2"> Ubah Data</button>
-                              <a href="/datakonsumen" class="btn btn-secondary btn-block py-2">Kembali</a>
+                            </div>
+                              <div class="card-footer text-right">
+                                <a href="/datakonsumen" class="btn btn-light">Kembali</a>
+                              <button type="submit" class="btn btn-primary"> Ubah Data</button>
+                              </div>
                          
             </form>
-        </div>
     </div>
-          
+</div>
+</div>    
     </div>
     @endsection

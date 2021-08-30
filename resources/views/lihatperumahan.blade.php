@@ -142,7 +142,8 @@
                                     </div>
                                     <div class="card-footer text-left">
                                       <button type="submit" class="btn btn-primary">Edit Data</button>
-                              <a href="/dataperumahan" class="btn btn-light">Kembali</a>      
+                                      <button class="btn btn-light" data-dismiss="modal">Batal</button>
+                              {{-- <a href="/dataperumahan" class="btn btn-light">batal</a>       --}}
                               </div>  
                             </form>
                         </div>
