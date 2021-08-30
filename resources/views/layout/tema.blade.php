@@ -292,7 +292,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By Rido Hermawansyah. S.Kom, MTA</a>
+          Copyright &copy; 2021 <div class="bullet"></div> Design By Rido Hermawansyah.</a>
         </div>
         <div class="footer-right">
           2.3.0

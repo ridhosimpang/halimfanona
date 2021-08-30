@@ -5,10 +5,10 @@
     active
 @endsection
 
-<div class="section-header align-right">
+<div class="section-header">
     <a href="dataperumahan/tambahperumahan"class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i>Tambah Data Perumahan</a>
 </div>
-        
+{{-- <div class="section-header align-items-end flex-column ">     --}}
         @if (session('status'))
         <div class="alert alert-success">
             {{ session('status')}}
