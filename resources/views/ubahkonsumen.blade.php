@@ -10,8 +10,7 @@
 <div class="card">      
         <div class="card-body">
                     
-            <form method="post" action="/datakonsumen/{{ $konsumen->id }}">
-              @method('patch')
+            <form method="post" action="/datakonsumenEdit/{{ $konsumen->id }}" enctype="multipart/form-data">
                 @csrf
                   <div class="form-group row">
                     <label for="nama_konsumen" class="col-sm-3 col-form-label">Nama Konsumen</label>
@@ -228,9 +227,9 @@
                             cache: true
                             }
                         });
-        </script>
-  </div>
-  </div>
+                        </script>
+                  </div>
+                  </div>
                           <div class="form-group row">
                             <label for="nohp" class="col-sm-3 col-form-label">Nomor Handphone</label>
                             <div class="col-sm-9 ">
@@ -243,7 +242,8 @@
                           <div class="form-group row">
                             <label for="foto" class="col-sm-3 col-form-label"> Ganti Foto</label>
                             <div class="col-sm-9 ">
-                              <img width="200px" src="{{Storage::url($konsumen->foto)}}" alt="">
+        <a href="{{Storage::url($konsumen->foto)}}" class="btn btn-primary">Lihat File Pasfoto</a>
+
                                 <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto" value="{{ old('foto')}}">
                                 @error('foto')
                                 <div class="invalid-feedback">{{$message}}</div>
@@ -253,7 +253,8 @@
                           <div class="form-group row">
                             <label for="fotoktp" class="col-sm-3 col-form-label"> Ganti Foto KTP</label>
                             <div class="col-sm-9 ">
-                              <img width="200px" src="{{Storage::url($konsumen->fotoktp)}}" alt="">
+        <a href="{{Storage::url($konsumen->fotoktp)}}" class="btn btn-primary">Lihat File KTP</a>
+
                               <input type="file" class="form-control @error('fotoktp') is-invalid @enderror" id="fotoktp" name="fotoktp" value="{{ old('fotoktp')}}">
                               @error('fotoktp')
                               <div class="invalid-feedback">{{$message}}</div>
@@ -263,7 +264,8 @@
                           <div class="form-group row">
                             <label for="fotokk" class="col-sm-3 col-form-label"> Ganti Foto KK</label>
                             <div class="col-sm-9 ">
-                              <img width="200px" src="{{Storage::url($konsumen->fotokk)}}" alt="">
+        <a href="{{Storage::url($konsumen->fotokk)}}" class="btn btn-primary">Lihat File KK</a>
+
                               <input type="file" class="form-control @error('fotokk') is-invalid @enderror" id="fotokk" name="fotokk" value="{{ old('fotokk')}}">
                               @error('fotokk')
                               <div class="invalid-feedback">{{$message}}</div>
@@ -273,7 +275,8 @@
                           <div class="form-group row">
                             <label for="fotonpwp" class="col-sm-3 col-form-label"> Ganti Foto NPWP</label>
                             <div class="col-sm-9 ">
-                              <img width="200px" src="{{Storage::url($konsumen->fotonpwp)}}" alt="">
+        <a href="{{Storage::url($konsumen->fotonpwp)}}" class="btn btn-primary">Lihat File NPWP</a>
+
                               <input type="file" class="form-control @error('fotonpwp') is-invalid @enderror" id="fotonpwp" name="fotonpwp" value="{{ old('fotonpwp')}}">
                               @error('fotonpwp')
                               <div class="invalid-feedback">{{$message}}</div>
@@ -283,7 +286,8 @@
                           <div class="form-group row">
                             <label for="fotobukunikah" class="col-sm-3 col-form-label"> Ganti Foto Buku Nikah</label>
                             <div class="col-sm-9 ">
-                              <img width="200px" src="{{Storage::url($konsumen->fotobukunikah)}}" alt="">
+        <a href="{{Storage::url($konsumen->fotobukunikah)}}" class="btn btn-primary">Lihat File Buku Nikah</a>
+
                               <input type="file" class="form-control @error('fotobukunikah') is-invalid @enderror" id="fotobukunikah" name="fotobukunikah" value="{{ old('fotobukunikah')}}">
                               @error('fotobukunikah')
                                 <div class="invalid-feedback">{{$message}}</div>

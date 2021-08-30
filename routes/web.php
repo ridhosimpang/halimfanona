@@ -57,7 +57,7 @@ Route::get('/datakonsumen/tambahkonsumen', 'DatakonsumenController@create');
 Route::post('/datakonsumen', 'DatakonsumenController@store');
 Route::delete('/datakonsumen/{konsumen}', 'DatakonsumenController@destroy');
 Route::get('/ubahkonsumen/{konsumen}/edit', 'DatakonsumenController@edit');
-Route::patch('/datakonsumen/{konsumen}', 'DatakonsumenController@update');
+Route::post('/datakonsumenEdit/{konsumen}', 'DatakonsumenController@update');
 
 Route::get('/datapenjualan', 'DatapenjualanController@index');
 Route::get('/datapenjualan/tambahpenjualan', 'DatapenjualanController@create');

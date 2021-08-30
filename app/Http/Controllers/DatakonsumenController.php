@@ -107,7 +107,7 @@ class DatakonsumenController extends Controller
      */
     public function update(Request $request, konsumen $konsumen)
     {
-        dd($request);
+        // dd($request);
         // $request->validate([
         //     'nama_konsumen' => 'required',
         //     'nik' => 'required|size:16',

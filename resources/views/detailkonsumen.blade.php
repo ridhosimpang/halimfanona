@@ -56,28 +56,40 @@
       <td> : {{$konsumen->no_hp}}</td>
     </tr>
     <tr >
-      <td>Foto</td>
-      <td ><img src="{{Storage::url($konsumen->foto)}}" alt="" width="200px" class="mb-2"></td>
+      <td>File Pasfoto</td>
+      <td >
+        <a href="{{Storage::url($konsumen->foto)}}" class="btn btn-primary">Lihat File Pasfoto</a>
+        {{-- <img src="{{Storage::url($konsumen->foto)}}" alt="" width="200px" class="mb-2"> --}}
+      </td>
       {{-- <td><input type="file" name="ktp" id=""></td> --}}
     </tr>
     <tr>
-      <td>Foto KTP</td>
-      <td><img src="{{Storage::url($konsumen->fotoktp)}}" alt="" width="200px" class="mb-2"></td>
+      <td>File KTP</td>
+      <td>
+        <a href="{{Storage::url($konsumen->fotoktp)}}" class="btn btn-primary">Lihat File KTP</a>
+      </td>
+      {{-- <td><img src="{{Storage::url($konsumen->fotoktp)}}" alt="" width="200px" class="mb-2"></td> --}}
       {{-- <td><input type="file" name="ktp" id=""></td> --}}
     </tr>
     <tr>
-      <td>Foto KK</td>
-      <td><img src="{{Storage::url($konsumen->fotokk)}}" alt="" width="200px" class="mb-2"></td>
+      <td>File KK</td>
+      <td>
+        <a href="{{Storage::url($konsumen->fotokk)}}" class="btn btn-primary">Lihat File KK</a>
+      </td>
       {{-- <td><input type="file" name="ktp" id=""></td> --}}
     </tr>
     <tr>
-      <td>Foto NPWP</td>
-      <td><img src="{{Storage::url($konsumen->fotonpwp)}}" alt="" width="200px" class="mb-2"></td>
+      <td>File NPWP</td>
+      <td>
+        <a href="{{Storage::url($konsumen->fotonpwp)}}" class="btn btn-primary">Lihat File NPWP</a>
+      </td>
       {{-- <td><input type="file" name="ktp" id=""></td> --}}
     </tr>
     <tr>
-      <td>Foto Buku Nikah</td>
-      <td><img src="{{Storage::url($konsumen->fotobukunikah)}}" alt="" width="200px" class="mb-2"></td>
+      <td>File Buku Nikah</td>
+      <td>
+        <a href="{{Storage::url($konsumen->fotobukunikah)}}" class="btn btn-primary">Lihat File Buku Nikah</a>
+      </td>
       {{-- <td><input type="file" name="ktp" id=""></td> --}}
     </tr>
   </tbody>
