@@ -47,7 +47,7 @@ class DatapengajuanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         $rules =[ 
             'nama_konsumen' => 'required', 
             'nik' => 'required|size:16', 
@@ -181,6 +181,7 @@ class DatapengajuanController extends Controller
     }
     public function transfer(Request $request, Pengajuan $id){
         // dd($id->toArray());
+        // dd($id);
         $requestData = $id->toArray();
         konsumen::create($requestData);
         $cekKonsumen = konsumen::where('nik',$id->nik)->first();

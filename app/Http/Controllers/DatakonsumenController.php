@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\konsumen;
+use App\penjualan;
+use App\unit;
 use App\perumahan;
 
 use Illuminate\Http\Request;
@@ -105,41 +107,63 @@ class DatakonsumenController extends Controller
      */
     public function update(Request $request, konsumen $konsumen)
     {
-        $request->validate([
-            'nama' => 'required',
-            'nik' => 'required|size:16',
-            'tmptlhr' => 'required',
-            'tgllhr' => 'required',
-            'alamat' => 'required',
-            'jk' => 'required',
-            'status_perkawinan' => 'required',
-            'agama' => 'required',
-            'namaperumahan' => 'required',
-            'blok' => 'required',
-            'no' => 'required|numeric',
-            'nohp' => 'required|numeric'
-        ]);
-            $costumMessages = [
-            'required' =>':attribute tidak boleh kosong',
-            'numeric' =>'Data yang dimasukan harus angka',
-            'size' => 'Jumlah NIK Harus 16 Angka'
-        ];
-        konsumen::where('id', $konsumen->id)
-            ->update([
-                'nama' => $request->nama,
-                'nik' => $request->nik,
-                'tmptlhr' => $request->tmptlhr,
-                'tgllhr' => $request->tgllhr,
-                'alamat' => $request->alamat,
-                'jk' => $request->jk,
-                'status_perkawinan' => $request->status_perkawinan,
-                'agama' => $request->agama,
-                'namaperumahan' => $request->namaperumahan,
-                'blok' => $request->blok,
-                'no' => $request->no,
-                'nohp' => $request->nohp
-                ]);
-            return redirect('/detailkonsumen'.'/'.$konsumen->id)->with('status', 'Data Perumahan Berhasil Diubah');
+        dd($request);
+        // $request->validate([
+        //     'nama_konsumen' => 'required',
+        //     'nik' => 'required|size:16',
+        //     'tempat_lahir' => 'required',
+        //     'tanggal_lahir' => 'required',
+        //     'alamat' => 'required',
+        //     'jk' => 'required',
+        //     'status_perkawinan' => 'required',
+        //     'agama' => 'required',
+        //     'perumahan_id' => 'required',
+        //     'unit_id' => 'required',
+        //     'nohp' => 'required|numeric'
+        // ]);
+        // $costumMessages = [
+        //     'required' =>':attribute tidak boleh kosong',
+        //     'numeric' =>'Data yang dimasukan harus angka',
+        //     'size' => 'Jumlah NIK Harus 16 Angka'
+        // ];
+        // $this->validate($request,$rules,$costumMessages);
+        $requestData=$request->all();
+        if ($request->hasFile('foto')) {
+            $fileFoto            = $request->file('foto')->store('public/konsumen');
+            $requestData['foto'] = $fileFoto;
+        } else {
+            unset($requestData['foto']);
+        }
+        if ($request->hasFile('fotoktp')) {
+            $filefotoktp            = $request->file('fotoktp')->store('public/konsumen');
+            $requestData['fotoktp'] = $filefotoktp;
+        } else {
+            unset($requestData['foto']);
+        }
+        if ($request->hasFile('fotokk')) {
+            $filefotokk            = $request->file('fotokk')->store('public/konsumen');
+            $requestData['fotokk'] = $filefotokk;
+        } else {
+            unset($requestData['fotokk']);
+        }
+        if ($request->hasFile('fotonpwp')) {
+            $filefotonpwp            = $request->file('fotonpwp')->store('public/konsumen');
+            $requestData['fotonpwp'] = $filefotonpwp;
+        } else {
+            unset($requestData['fotonpwp']);
+        }
+        if ($request->hasFile('fotobukunikah')) {
+            $filefotobukunikah            = $request->file('fotobukunikah')->store('public/konsumen');
+            $requestData['fotobukunikah'] = $filefotobukunikah;
+        } else {
+            unset($requestData['fotobukunikah']);
+        }
+        konsumen::find($konsumen->id)->update($requestData);
+        $refreshUnit = unit::where('konsumen_id',$konsumen->id)->update(['konsumen_id'=>null,'pengajuan'=>null]);
+        $updateUnit = unit::find($request->unit_id)->update(['konsumen_id'=>$konsumen->id,'pengajuan'=>$konsumen->nama_konsumen]);
+        $cariPenjualan = penjualan::where('konsumen_id',$konsumen->id)->first();
+        $cariPenjualan->update(['perumahan_id'=>$request->perumahan_id,'unit_id'=>$request->unit_id]);
+        return redirect('/detailkonsumen'.'/'.$konsumen->id)->with('status', 'Data Konsumen Berhasil Diubah');
     }
 
     /**
@@ -151,6 +175,9 @@ class DatakonsumenController extends Controller
     public function destroy(konsumen $konsumen)
     {
         konsumen::destroy($konsumen->id);
+        $updatePenjualan = penjualan::where('konsumen_id',$konsumen->id)->first();
+        $updatePenjualan->delete();
+        $updateUnit = unit::where('konsumen_id',$konsumen->id)->update(['konsumen_id'=>null,'pengajuan'=>null]);
         return redirect('/datakonsumen')->with('status', 'Data konsumen Berhasil Dihapus');
     }
     public function konsumenPerumahan(perumahan $id){

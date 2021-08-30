@@ -91,7 +91,7 @@
                       @csrf
                       <button type="button" class="btn btn-danger"data-toggle="modal" data-target="#hapusdatakonsumen" >Delete</button>
                    
-                      <div class="modal fade" id="hapusdatakonsumen" tabindex="-1" role="dialog">
+                      <div class="modal fade" id="hapusdatakonsumen" tabindex="-1" role="dialog" data-backdrop="false">
                         <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">

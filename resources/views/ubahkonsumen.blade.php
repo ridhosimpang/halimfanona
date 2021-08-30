@@ -17,7 +17,7 @@
                     <label for="nama_konsumen" class="col-sm-3 col-form-label">Nama Konsumen</label>
                     <div class="col-sm-9 ">
                       <input type="text" class="form-control @error('nama_konsumen') is-invalid
-                       @enderror" id="nama_konsumen" placeholder="Masukan Nama Konsumen" name="nam_konsumen" value="{{$konsumen->nama_konsumen}}">
+                       @enderror" id="nama_konsumen" placeholder="Masukan Nama Konsumen" name="nama_konsumen" value="{{$konsumen->nama_konsumen}}">
                       @error('nama_konsumen')
                                 <div class="invalid-feedback " style="color:red">{{$message}}</div>
                         @enderror
@@ -44,7 +44,7 @@
                       <div class="form-group row">
                         <label for="tgllhr" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-9 ">
-                          <input type="date" class="form-control @error('tgllhr') is-invalid @enderror" id="tgllhr" name="tgllhr" value="{{$konsumen->tgllhr}}">
+                          <input type="date" class="form-control @error('tgllhr') is-invalid @enderror" id="tgllhr" name="tgllhr" value="{{$konsumen->tanggal_lahir}}">
                           @error('tgllhr')
                             <div class="invalid-feedback">{{$message}}</div>
                           @enderror
@@ -153,45 +153,97 @@
       {{-- </div> --}}
   </fieldset>
   
-                          <div class="form-group row">
-                            <label for="namaperumahan" class="col-sm-3 col-form-label">Nama Perumahan</label>
-                            <div class="col-sm-9 ">
-                              <input type="text" class="form-control @error('namaperumahan') is-invalid @enderror" id="namaperumahan" placeholder="Masukan Nama Perumahan" name="namaperumahan" value="{{$konsumen->namaperumahan}}">
-                      @error('namaperumahan')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="blok" class="col-sm-3 col-form-label">Blok</label>
-                            <div class="col-sm-9 ">
-                              <input type="text" class="form-control @error('blok') is-invalid @enderror" id="blok" placeholder="Masukan Blok" name="blok" value="{{$konsumen->blok}}">
-                      @error('blok')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="no" class="col-sm-3 col-form-label">Nomor</label>
-                            <div class="col-sm-9 ">
-                              <input type="text" class="form-control @error('no') is-invalid @enderror" id="no" placeholder="Masukan Nomor" name="no" value="{{$konsumen->no}}">
-                      @error('no')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
-                            </div>
-                          </div>
+  <div class="form-group row">
+    <label for="namaperumahan" class="col-sm-3 col-form-label">Nama Perumahan</label>
+    <div class="col-sm-9 ">
+      <input type="hidden" name="" id="perum">
+      <select class="cari form-control" style="width:300px;height:calc(1.5em + .75rem + 2px);" name="perumahan_id">
+        <option value="{{$konsumen->perumahan->id}}">{{$konsumen->perumahan->nama}}</option></select>
+      {{-- <input type="text" class="form-control @error('objek') is-invalid @enderror" name="objek" value="{{old('objek')}}"> --}}
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+      <script type="text/javascript">
+        $('.cari').select2({
+                            placeholder: 'Pilih Perumahan...',
+                            ajax: {
+                            url: '/cariPerumahan',
+                            dataType: 'json',
+                            delay: 250,
+                            processResults: function (data) {
+                                return {
+                                results:  $.map(data, function (item) {
+                                    return {
+                                    text: item.nama, /* memasukkan text di option => <option>namaSurah</option> */
+                                    id: item.id /* memasukkan value di option => <option value=id> */
+                                    }
+                                })
+                                };
+                            },
+                            cache: true
+                            }
+                        });
+        $('.cari').change(function(){
+          if($(this).val()!= ''){
+            var perumahan_id = $(this).val();
+            document.getElementById('perum').value=perumahan_id;
+          }
+        });
+        </script>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="blok" class="col-sm-3 col-form-label">Blok</label>
+    <div class="col-sm-9 ">
+      <select class="cariBlok form-control" style="width:300px;height:calc(1.5em + .75rem + 2px);" name="unit_id">
+      <option value="{{$konsumen->unit->id}}">{{$konsumen->unit->blok}}</option>
+      </select>
+      {{-- <input type="text" class="form-control @error('objek') is-invalid @enderror" name="objek" value="{{old('objek')}}"> --}}
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+      <script type="text/javascript">
+        var id = document.getElementById('perum').value;
+        // console.log(id);
+        $('.cariBlok').select2({
+                            placeholder: 'Pilih Blok...',
+                            ajax: {
+                            url: '/cariBlok',
+                            dataType: 'json',
+                            delay: 250,
+                            data: function (params) {
+                              return {
+                                q: params.term, // search term
+                                id:document.getElementById('perum').value
+                              };
+                            },
+                            processResults: function (data) {
+                                return {
+                                results:  $.map(data, function (item) {
+                                    return {
+                                    text: item.blok, /* memasukkan text di option => <option>namaSurah</option> */
+                                    id: item.id /* memasukkan value di option => <option value=id> */
+                                    }
+                                })
+                                };
+                            },
+                            cache: true
+                            }
+                        });
+        </script>
+  </div>
+  </div>
                           <div class="form-group row">
                             <label for="nohp" class="col-sm-3 col-form-label">Nomor Handphone</label>
                             <div class="col-sm-9 ">
-                              <input type="text" class="form-control @error('nohp') is-invalid @enderror" id="nohp" placeholder="Masukan Nomor Handphone" name="nohp" value="{{$konsumen->nohp}}">
-                      @error('nohp')
-                                <div class="invalid-feedback " style="color:red">{{$message}}</div>
-                        @enderror
+                              <input type="text" class="form-control @error('nohp') is-invalid @enderror" id="nohp" name="nohp" value="{{$konsumen->no_hp}}">
+                              @error('nohp')
+                                      <div class="invalid-feedback " style="color:red">{{$message}}</div>
+                              @enderror
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="foto" class="col-sm-3 col-form-label"> Foto</label>
+                            <label for="foto" class="col-sm-3 col-form-label"> Ganti Foto</label>
                             <div class="col-sm-9 ">
+                              <img width="200px" src="{{Storage::url($konsumen->foto)}}" alt="">
                                 <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto" value="{{ old('foto')}}">
                                 @error('foto')
                                 <div class="invalid-feedback">{{$message}}</div>
@@ -199,37 +251,41 @@
                               </div>  
                           </div>
                           <div class="form-group row">
-                            <label for="fotoktp" class="col-sm-3 col-form-label"> Foto KTP</label>
+                            <label for="fotoktp" class="col-sm-3 col-form-label"> Ganti Foto KTP</label>
                             <div class="col-sm-9 ">
-                                <input type="file" class="form-control @error('fotoktp') is-invalid @enderror" id="fotoktp" name="fotoktp" value="{{ old('fotoktp')}}">
-                                @error('fotoktp')
-                                <div class="invalid-feedback">{{$message}}</div>
-                                @enderror
-                              </div>  
+                              <img width="200px" src="{{Storage::url($konsumen->fotoktp)}}" alt="">
+                              <input type="file" class="form-control @error('fotoktp') is-invalid @enderror" id="fotoktp" name="fotoktp" value="{{ old('fotoktp')}}">
+                              @error('fotoktp')
+                              <div class="invalid-feedback">{{$message}}</div>
+                              @enderror
+                            </div>  
                           </div>
                           <div class="form-group row">
-                            <label for="fotokk" class="col-sm-3 col-form-label"> Foto KK</label>
+                            <label for="fotokk" class="col-sm-3 col-form-label"> Ganti Foto KK</label>
                             <div class="col-sm-9 ">
-                                <input type="file" class="form-control @error('fotokk') is-invalid @enderror" id="fotokk" name="fotokk" value="{{ old('fotokk')}}">
-                                @error('fotokk')
-                                <div class="invalid-feedback">{{$message}}</div>
-                                @enderror
-                              </div>  
+                              <img width="200px" src="{{Storage::url($konsumen->fotokk)}}" alt="">
+                              <input type="file" class="form-control @error('fotokk') is-invalid @enderror" id="fotokk" name="fotokk" value="{{ old('fotokk')}}">
+                              @error('fotokk')
+                              <div class="invalid-feedback">{{$message}}</div>
+                              @enderror
+                            </div>  
                           </div>
                           <div class="form-group row">
-                            <label for="fotonpwp" class="col-sm-3 col-form-label"> Foto NPWP</label>
+                            <label for="fotonpwp" class="col-sm-3 col-form-label"> Ganti Foto NPWP</label>
                             <div class="col-sm-9 ">
-                                <input type="file" class="form-control @error('fotonpwp') is-invalid @enderror" id="fotonpwp" name="fotonpwp" value="{{ old('fotonpwp')}}">
-                                @error('fotonpwp')
-                                <div class="invalid-feedback">{{$message}}</div>
-                                @enderror
-                              </div>  
+                              <img width="200px" src="{{Storage::url($konsumen->fotonpwp)}}" alt="">
+                              <input type="file" class="form-control @error('fotonpwp') is-invalid @enderror" id="fotonpwp" name="fotonpwp" value="{{ old('fotonpwp')}}">
+                              @error('fotonpwp')
+                              <div class="invalid-feedback">{{$message}}</div>
+                              @enderror
+                            </div>  
                           </div>
                           <div class="form-group row">
-                            <label for="fotobukunikah" class="col-sm-3 col-form-label"> Foto Buku Nikah</label>
+                            <label for="fotobukunikah" class="col-sm-3 col-form-label"> Ganti Foto Buku Nikah</label>
                             <div class="col-sm-9 ">
-                                <input type="file" class="form-control @error('fotobukunikah') is-invalid @enderror" id="fotobukunikah" name="fotobukunikah" value="{{ old('fotobukunikah')}}">
-                                @error('fotobukunikah')
+                              <img width="200px" src="{{Storage::url($konsumen->fotobukunikah)}}" alt="">
+                              <input type="file" class="form-control @error('fotobukunikah') is-invalid @enderror" id="fotobukunikah" name="fotobukunikah" value="{{ old('fotobukunikah')}}">
+                              @error('fotobukunikah')
                                 <div class="invalid-feedback">{{$message}}</div>
                                 @enderror
                               </div>  
