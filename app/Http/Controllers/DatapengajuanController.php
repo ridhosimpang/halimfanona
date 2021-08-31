@@ -47,7 +47,7 @@ class DatapengajuanController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $rules =[ 
             'nama_konsumen' => 'required', 
             'nik' => 'required|size:16', 
