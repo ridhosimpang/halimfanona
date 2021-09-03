@@ -29,7 +29,7 @@
         <th scope="col">Status</th>
         {{-- <th scope="col">Jadwal Wawancara</th> --}}
         <th scope="col">Jadwal Akad</th>
-        <th scope="col">Aksi</th>
+        {{-- <th scope="col">Aksi</th> --}}
       </tr>
     </thead>
             <tbody>
@@ -121,7 +121,7 @@
                             </div>
                           </div>
                           <!-- Modal Transfer-->
-                          <div class="modal fade" id="modalTransfer{{$pj->id}}" tabindex="-1" role="dialog" aria-labelledby="modalTransferTitle" aria-hidden="true">
+                          <div class="modal fade" id="modalTransfer{{$pj->id}}" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="modalTransferTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -148,9 +148,9 @@
                         --
                         @endif
                     </td>
-                    <td>
+                    {{-- <td>
                         <button type="submit" class="btn btn-info">Detail</button>
-                    </td>
+                    </td> --}}
                 </tr>
                 @endforeach
                 </tbody>
