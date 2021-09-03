@@ -263,11 +263,13 @@
               <li class="@yield('menuPengajuan')"><a class="nav-link mb-3" href="/datapengajuan"><i class="fas fa-clipboard-check" style="font-size: 20px"></i> <span>Data Pengajuan</span></a></li>
               <li><a class="nav-link mb-3" href="/datakonsumen"><i class="fas fa-user-friends" style="font-size: 20px"></i> <span>Data Konsumen</span></a></li>
               <li><a class="nav-link mb-3" href="/datapenjualan"><i class="fas fa-money-bill-wave" style="font-size: 20px"></i> <span>Data Penjualan</span></a></li>
-
-
+              
+              
               @elseif(auth()->user()->role=='direktur')
-			<li><a href="/editadmin"><em class="fa fa-navicon">&nbsp;</em>Kelola Admin</a></li>
-			<li><a href="/datapenjualan"><em class="fa fa-navicon">&nbsp;</em>Laporan Penjualan</a></li>
+              <li><a href="/editadmin"><em class="fa fa-navicon">&nbsp;</em>Kelola Admin</a></li>
+              <li><a class="nav-link mb-3" href="/datakonsumen"><span>Laporan Konsumen</span></a></li>
+              <li><a href="/datapenjualan"><em class="fa fa-navicon">&nbsp;</em>Laporan Penjualan</a></li>
+              <li class="@yield('menuPengajuan')"><a class="nav-link mb-3" href="/datapengajuan"> <span>Laporan Pengajuan</span></a></li>
       @endif
             </ul>
 

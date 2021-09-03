@@ -19,7 +19,11 @@
 <div class="card">
     <div class="card-header">
         <div class="col-10">
+            @if(auth()->user()->role=='admin')
             <h4> Data Penjualan </h4>
+            @elseif(auth()->user()->role=='direktur')
+            <h4> Laporan Penjualan </h4>
+            @endif
         </div>
         <div class="col-2">
             <a href="{{route('exportPenjualan')}}" class="btn btn-success "> <i class="fas fa-file-excel    "></i> Export</a>
@@ -35,7 +39,9 @@
         <th scope="col">Nama Konsumen</th>
         <th scope="col">Tanggal Akad</th>
         <th scope="col">Status Kavling</th>
+        @if(auth()->user()->role=='admin')
         <th scope="col">Aksi</th>
+        @endif
       </tr>
     </thead>
             <tbody>

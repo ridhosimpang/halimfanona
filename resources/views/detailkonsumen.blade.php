@@ -102,6 +102,8 @@
 <form action="/datakonsumen/{{ $konsumen->id }}" method="post" class="d-inline ">
   <div class="card-footer text-right">
   <a href="/datakonsumen" class="btn btn-light">Kembali</a>
+    @if (auth()->user()->role == "admin")
+      
   <a href="/ubahkonsumen/{{$konsumen->id}}/edit" class="btn btn-info">Edit</a>
                       @method('delete')
                       @csrf
@@ -130,6 +132,7 @@
                           </div>
                         </div>
                       </div>
+                      @endif
   </div>
                       
                       </form>

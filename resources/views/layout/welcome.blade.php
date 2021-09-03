@@ -85,7 +85,11 @@
             <li><a href="#profil">Profil</a></li>
             <li><a href="#contact">Contact</a></li>
            <li class="get-started">
-             <a href="/loginAdmin"> Login</a>
+            @auth
+                <a href="{{ url('/admin') }}">Dashboard</a>
+            @else
+                <a href="/loginAdmin"> Login</a>
+            @endauth
             </li>
             
             {{-- <li class="get-started"><a href="#about">Login</a></li> --}}

@@ -39,6 +39,7 @@
                     <td>{{ $pj->perumahan->nama}}</td>
                     <td>{{ $pj->unit->blok}}</td>
                     <td>{{ $pj->nama_konsumen}}</td>
+                    @if(auth()->user()->role=='admin')
                     <td>
                         <form action="datapengajuan/{{$pj->id }}" method="post" class="">
                         @method('patch')
@@ -140,6 +141,11 @@
                             </div>
                           </div>
                     </td>
+                    @elseif(auth()->user()->role=='direktur')
+                    <td>
+                      {{$pj->status_berkas}}
+                    </td>
+                    @endif
                     <td>
                         @if($pj->jadwalAkad != null)
                         {{Carbon\carbon::parse($pj->jadwalAkad)->isoFormat('D MMMM Y')}}
