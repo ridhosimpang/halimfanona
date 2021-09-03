@@ -129,16 +129,17 @@ class DatakonsumenController extends Controller
         // $this->validate($request,$rules,$costumMessages);
         $requestData=$request->all();
         if ($request->hasFile('foto')) {
-            $fileFoto            = $request->file('foto')->store('public/konsumen');
+            $fileFoto            = $request->file('foto')->store('public/konsumen/baru');
             $requestData['foto'] = $fileFoto;
         } else {
             unset($requestData['foto']);
         }
+        // dd($requestData);
         if ($request->hasFile('fotoktp')) {
             $filefotoktp            = $request->file('fotoktp')->store('public/konsumen');
             $requestData['fotoktp'] = $filefotoktp;
         } else {
-            unset($requestData['foto']);
+            unset($requestData['fotoktp']);
         }
         if ($request->hasFile('fotokk')) {
             $filefotokk            = $request->file('fotokk')->store('public/konsumen');
@@ -158,7 +159,8 @@ class DatakonsumenController extends Controller
         } else {
             unset($requestData['fotobukunikah']);
         }
-        konsumen::find($konsumen->id)->update($requestData);
+        // dd($requestData);
+        $konsumen->update($requestData);
         $refreshUnit = unit::where('konsumen_id',$konsumen->id)->update(['konsumen_id'=>null,'pengajuan'=>null]);
         $updateUnit = unit::find($request->unit_id)->update(['konsumen_id'=>$konsumen->id,'pengajuan'=>$konsumen->nama_konsumen]);
         $cariPenjualan = penjualan::where('konsumen_id',$konsumen->id)->first();

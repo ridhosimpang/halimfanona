@@ -4,7 +4,11 @@
 
 <!-- /subnavbar -->
 <div class="section-header bg-primary"> </div>
-  
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status')}}
+</div>
+@endif
 <div class="card">
   <div class="card-header">
       <h4> Detail Konsumen </h4>
